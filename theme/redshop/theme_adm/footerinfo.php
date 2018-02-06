@@ -24,7 +24,7 @@ if(is_file($save_file))
             <textarea name="etc" id="etc" required class="required"><?php echo $footerinfo['etc']; ?></textarea>
         </li>
     </ul>
-</div>
+</div><!-- 
 <div class="con_wr ftif">
     <h2>무통장입금 정보</h2>
     <ul>
@@ -38,7 +38,7 @@ if(is_file($save_file))
         </li>
     </ul>
 </div>
-</form>
+</form> -->
 
 <?php
 include_once('./tail.php');

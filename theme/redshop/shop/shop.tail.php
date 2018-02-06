@@ -33,13 +33,13 @@ if (G5_IS_MOBILE) {
         <p><?php echo get_text($footerinfo['etc'], 1); ?></p>
     </div>
 
-    <div class="ft-bank">
+    <!-- <div class="ft-bank">
         <h2>무통장입금안내</h2><span class="st_bg_2"></span>
         <p>
             <?php echo get_text($footerinfo['account'], 1); ?><br>
             <strong>예금주 / <?php echo get_text($footerinfo['depositor']); ?></strong>
         </p>
-    </div>
+    </div> -->
 
     <div class="ft-info">
         <h2><?php echo $default['de_admin_company_name']; ?></h2><span class="st_bg_2"></span>
