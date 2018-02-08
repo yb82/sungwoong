@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
@@ -2021,3 +2021,6 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+UPDATE `g5_config` set `cf_admin_email_name` = 'SafeHoju AU' WHERE `cf_admin_email_name`= '그누보드5';
+UPDATE `g5_config` set `cf_title` = 'SafeHoju AU' WHERE `cf_title`= '그누보드5;
