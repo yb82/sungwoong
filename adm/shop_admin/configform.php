@@ -689,6 +689,8 @@ if(!isset($default['de_listtype_list_skin'])) {
                     <li class="<?php if($default['de_pg_service'] == 'kcp') echo 'tab-current'; ?>"><a href="#kcp_info_anchor" data-value="kcp" title="NHN KCP 선택하기" >NHN KCP</a></li>
                     <li class="<?php if($default['de_pg_service'] == 'lg') echo 'tab-current'; ?>"><a href="#lg_info_anchor" data-value="lg" title="LG유플러스 선택하기">LG유플러스</a></li>
                     <li class="<?php if($default['de_pg_service'] == 'inicis') echo 'tab-current'; ?>"><a href="#inicis_info_anchor" data-value="inicis" title="KG이니시스 선택하기">KG이니시스</a></li>
+                    <li class="<?php if($default['de_pg_service'] == 'paypal') echo 'tab-current'; ?>"><a href="#de_paypal_client_no" data-value="paypal" title="Paypal 선택하기">Paypal</a></li>
+                    
                 </ul>
             </td>
         </tr>
@@ -887,6 +889,36 @@ if(!isset($default['de_listtype_list_skin'])) {
                     <label for="de_escrow_use1">일반결제 사용</label>
                     <input type="radio" name="de_escrow_use" value="1"<?php echo $default['de_escrow_use']==1?"checked":""; ?> id="de_escrow_use2">
                     <label for="de_escrow_use2"> 에스크로결제 사용</label>
+            </td>
+        </tr>
+        <tr class="">
+
+            <th scope="row">
+                <label>Paypal API ID</label>
+            </th> 
+            <td>
+                <label for="de_escrow_use2" > API ID를 넣어주세요</label><br/>
+                 <input type="text" name="de_paypal_client_api_id" value="<?php echo $default['de_paypal_client_api_id']; ?>" id="de_paypal_client_no" class="frm_input" size="70">
+            </td>
+        </tr>
+        <tr class="">
+
+            <th scope="row">
+                <label>Paypal API Password</label>
+            </th> 
+            <td>
+                <label for="de_escrow_use2" > API Password를 넣어주세요</label><br/>
+                 <input type="text" name="de_paypal_client_api_pw" value="<?php echo $default['de_paypal_client_api_pw']; ?>" id="de_paypal_client_no" class="frm_input" size="70">
+            </td>
+        </tr>
+        <tr class="">
+
+            <th scope="row">
+                <label>Paypal API Client Signature</label>
+            </th> 
+            <td>
+                <label for="de_escrow_use2" > API Signature를 넣어주세요</label><br/>
+                 <input type="text" name="de_paypal_client_api_signature" value="<?php echo $default['de_paypal_client_api_signature']; ?>" id="de_paypal_client_no" class="frm_input" size="70">
             </td>
         </tr>
         <tr>
@@ -1742,7 +1774,7 @@ if($default['de_iche_use'] || $default['de_vbank_use'] || $default['de_hp_use'] 
             $exe .= 'pp_cli_exe.exe';
         }
 
-        echo module_exec_check(G5_SHOP_PATH.$exe, 'pp_cli');
+      //  echo module_exec_check(G5_SHOP_PATH.$exe, 'pp_cli');
 
         // shop/kcp/log 디렉토리 체크 후 있으면 경고
         if(is_dir(G5_SHOP_PATH.'/kcp/log') && is_writable(G5_SHOP_PATH.'/kcp/log')) {

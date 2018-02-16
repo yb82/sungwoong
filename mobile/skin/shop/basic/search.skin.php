@@ -18,7 +18,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             <input type="checkbox" name="qbasic" id="ssch_qbasic" value="1" <?php echo $qbasic_check?'checked="checked"':'';?>> <label for="ssch_qbasic">기본설명</label><br>
         </div>
         <div>
-            <strong>상품가격 (원)</strong>
+            <strong>상품가격 (A $)</strong>
             <label for="ssch_qfrom" class="sound_only">최소 가격</label>
             <input type="text" name="qfrom" value="<?php echo $qfrom; ?>" id="ssch_qfrom" class="frm_input"> ~
             <label for="ssch_qto" class="sound_only">최대 가격</label>

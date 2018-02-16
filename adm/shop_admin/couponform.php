@@ -102,7 +102,7 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
         <td>
            <?php echo help("쿠폰 타입을 변경하시면 입력 서식도 일부 변경됩니다."); ?>
            <select name="cp_type" id="cp_type">
-                <option value="0"<?php echo get_selected('0', $cp['cp_type']); ?>>정액할인(원)</option>
+                <option value="0"<?php echo get_selected('0', $cp['cp_type']); ?>>정액할인(A $)</option>
                 <option value="1"<?php echo get_selected('1', $cp['cp_type']); ?>>정률할인(%)</option>
            </select>
         </td>
@@ -110,30 +110,30 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
     <tr>
         <th scope="row"><label for="cp_price"><?php echo $cp['cp_type'] ? '할인비율' : '할인금액'; ?></label></th>
         <td>
-            <input type="text" name="cp_price" value="<?php echo stripslashes($cp['cp_price']); ?>" id="cp_price" required class="frm_input required"> <span id="cp_price_unit"><?php echo $cp['cp_type'] ? '%' : '원'; ?></span>
+            <input type="text" name="cp_price" value="<?php echo stripslashes($cp['cp_price']); ?>" id="cp_price" required class="frm_input required"> <span id="cp_price_unit"><?php echo $cp['cp_type'] ? '%' : 'A $'; ?></span>
         </td>
     </tr>
     <tr id="tr_cp_trunc">
         <th scope="row"><label for="cp_trunc">절사금액</label></th>
         <td>
             <select name="cp_trunc" id="cp_trunc">
-            <option value="1"<?php echo get_selected('1', $cp['cp_trunc']); ?>>1원단위</option>
-            <option value="10"<?php echo get_selected('10', $cp['cp_trunc']); ?>>10원단위</option>
-            <option value="100"<?php echo get_selected('100', $cp['cp_trunc']); ?>>100원단위</option>
-            <option value="1000"<?php echo get_selected('1000', $cp['cp_trunc']); ?>>1,000원단위</option>
+            <option value="1"<?php echo get_selected('1', $cp['cp_trunc']); ?>>1c</option>
+            <option value="10"<?php echo get_selected('10', $cp['cp_trunc']); ?>>10c</option>
+            <option value="100"<?php echo get_selected('100', $cp['cp_trunc']); ?>>$1</option>
+            
            </select>
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="cp_minimum">최소주문금액</label></th>
         <td>
-            <input type="text" name="cp_minimum" value="<?php echo stripslashes($cp['cp_minimum']); ?>" id="cp_minimum" class="frm_input"> 원
+           A $ <input type="text" name="cp_minimum" value="<?php echo stripslashes($cp['cp_minimum']); ?>" id="cp_minimum" class="frm_input">
         </td>
     </tr>
     <tr id="tr_cp_maximum">
         <th scope="row"><label for="cp_maximum">최대할인금액</label></th>
         <td>
-            <input type="text" name="cp_maximum" value="<?php echo stripslashes($cp['cp_maximum']); ?>" id="cp_maximum" class="frm_input"> 원
+            A $ <input type="text" name="cp_maximum" value="<?php echo stripslashes($cp['cp_maximum']); ?>" id="cp_maximum" class="frm_input"> 
         </td>
     </tr>
     <?php if($w == '') { ?>
@@ -229,7 +229,7 @@ function change_method(cp_method)
 function change_type(cp_type)
 {
     if(cp_type == "0") {
-        $("#cp_price_unit").text("원");
+        $("#cp_price_unit").text("A $");
         $("#cp_price_unit").closest("tr").find("label").text("할인금액");
         $("#tr_cp_maximum").hide();
         $("#tr_cp_trunc").hide();

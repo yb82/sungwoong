@@ -210,7 +210,13 @@ $sql = " update {$g5['g5_shop_default_table']}
                 de_member_reg_coupon_use      = '{$_POST['de_member_reg_coupon_use']}',
                 de_member_reg_coupon_term     = '{$_POST['de_member_reg_coupon_term']}',
                 de_member_reg_coupon_price    = '{$_POST['de_member_reg_coupon_price']}',
-                de_member_reg_coupon_minimum  = '{$_POST['de_member_reg_coupon_minimum']}'
+                de_member_reg_coupon_minimum  = '{$_POST['de_member_reg_coupon_minimum']}',
+                de_paypal_client_api_id       = '{$_POST['de_paypal_client_api_id']}',
+                de_paypal_client_api_pw       = '{$_POST['de_paypal_client_api_pw']}',
+                de_paypal_client_api_signature = '{$_POST['de_paypal_client_api_signature']}'
+                
+
+
                 ";
 sql_query($sql);
 

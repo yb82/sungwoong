@@ -85,9 +85,9 @@ if($option_2) {
                 $it_stock_qty = get_option_stock_qty($row['it_id'], $row['io_id'], $row['io_type']);
 
             if($row['io_price'] < 0)
-                $io_price = '('.number_format($row['io_price']).'원)';
+                $io_price = '(A $'.number_format($row['io_price'],2).')';
             else
-                $io_price = '(+'.number_format($row['io_price']).'원)';
+                $io_price = '(+ A $'.number_format($row['io_price'],2).')';
 
             $cls = 'opt';
             if($row['io_type'])

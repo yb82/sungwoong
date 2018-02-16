@@ -196,15 +196,15 @@ if($is_kakaopay_use) {
                 <?php echo $it_name; ?>
             </td>
             <td class="td_num"><?php echo number_format($sum['qty']); ?></td>
-            <td class="td_numbig"><?php echo number_format($row['ct_price']); ?></td>
+            <td class="td_numbig">A $<?php echo number_format($row['ct_price'],2); ?></td>
             <td class="td_mngsmall"><?php echo $cp_button; ?></td>
-            <td class="td_numbig"><span class="total_price"><?php echo number_format($sell_price); ?></span></td>
+            <td class="td_numbig">A $<span class="total_price"><?php echo number_format($sell_price,2); ?></span></td>
             <td class="td_numbig"><?php echo number_format($point); ?></td>
             <td class="td_dvr"><?php echo $ct_send_cost; ?></td>
         </tr>
 
         <?php
-            $tot_point      += $point;
+            $문      += $point;
             $tot_sell_price += $sell_price;
         } // for 끝
 
@@ -232,17 +232,17 @@ if($is_kakaopay_use) {
     <!-- 주문상품 합계 시작 { -->
     <dl id="sod_bsk_tot">
         <dt class="sod_bsk_sell">주문</dt>
-        <dd class="sod_bsk_sell"><strong>$<?php echo number_format($tot_sell_price); ?> </strong></dd>
+        <dd class="sod_bsk_sell"><strong>A $<?php echo number_format($tot_sell_price,2); ?> </strong></dd>
         <?php if($it_cp_count > 0) { ?>
         <dt class="sod_bsk_coupon">쿠폰할인</dt>
-        <dd class="sod_bsk_coupon">$<strong id="ct_tot_coupon">0 원</strong></dd>
+        <dd class="sod_bsk_coupon">$<strong id="ct_tot_coupon">$ 0 </strong></dd>
         <?php } ?>
         <dt class="sod_bsk_dvr">배송비</dt>
-        <dd class="sod_bsk_dvr">$<strong><?php echo number_format($send_cost); ?> </strong></dd>
+        <dd class="sod_bsk_dvr">A $<strong><?php echo number_format($send_cost,2); ?> </strong></dd>
         <dt class="sod_bsk_cnt">총계</dt>
         <dd class="sod_bsk_cnt">
             <?php $tot_price = $tot_sell_price + $send_cost; // 총계 = 주문상품금액합계 + 배송비 ?>
-            <strong id="ct_tot_price">$<?php echo number_format($tot_price); ?> </strong>
+            <strong id="ct_tot_price">$<?php echo number_format($tot_price,2); ?> </strong>
         </dd>
         <dt class="sod_bsk_point">포인트</dt>
         <dd class="sod_bsk_point"><strong><?php echo number_format($tot_point); ?> 점</strong></dd>
@@ -506,7 +506,7 @@ if($is_kakaopay_use) {
             </tr>
             <tr>
                 <th scope="row">주문할인금액</th>
-                <td><span id="od_cp_price">0</span>원</td>
+                <td>A $<span id="od_cp_price">0</span></td>
             </tr>
             <?php } ?>
             <?php if($sc_cnt > 0) { ?>
@@ -519,16 +519,16 @@ if($is_kakaopay_use) {
             </tr>
             <tr>
                 <th scope="row">배송비할인금액</th>
-                <td><span id="sc_cp_price">0</span>원</td>
+                <td>A $<span id="sc_cp_price">0</span></td>
             </tr>
             <?php } ?>
             <tr>
                 <th>총 주문금액</th>
-                <td><span id="od_tot_price"><?php echo number_format($tot_price); ?></span>원</td>
+                <td>A $<span id="od_tot_price"><?php echo number_format($tot_price,2); ?></span></td>
             </tr>
             <tr>
                 <th>추가배송비</th>
-                <td><span id="od_send_cost2">0</span>원 (지역에 따라 추가되는 도선료 등의 배송비입니다.)</td>
+                <td>$<span id="od_send_cost2">0</span>(지역에 따라 추가되는 도선료 등의 배송비입니다.)</td>
             </tr>
             </tbody>
             </table>
@@ -550,7 +550,9 @@ if($is_kakaopay_use) {
             echo '<fieldset id="sod_frm_paysel">';
             echo '<legend>결제방법 선택</legend>';
         }
+// todo: paypal button  add!!!!
 
+        
         // 카카오페이
         if($is_kakaopay_use) {
             $multi_settle++;
@@ -828,7 +830,7 @@ $(function() {
         var od_price = parseInt($("input[name=org_od_price]").val()) - item_coupon;
 
         if(price == 0) {
-            if(!confirm(subj+"쿠폰의 할인 금액은 "+price+"원입니다.\n쿠폰을 적용하시겠습니까?")) {
+            if(!confirm(subj+"쿠폰의 할인 금액은 $"+price+" 입니다.\n쿠폰을 적용하시겠습니까?")) {
                 return false;
             }
         }
@@ -899,7 +901,7 @@ $(function() {
         var send_cost = parseInt($("input[name=od_send_cost]").val());
 
         if(parseInt(price) == 0) {
-            if(!confirm(subj+"쿠폰의 할인 금액은 "+price+"원입니다.\n쿠폰을 적용하시겠습니까?")) {
+            if(!confirm(subj+"쿠폰의 할인 금액은 $"+price+"입니다.\n쿠폰을 적용하시겠습니까?")) {
                 return false;
             }
         }

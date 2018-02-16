@@ -1,0 +1,17 @@
+Searching 2216 files for "총 주문금액"
+
+/Applications/MAMP/htdocs/sungwoong1/mobile/shop/orderform.sub.php:
+  519              <?php } ?>
+  520              <tr>
+  521:                 <th>총 주문금액</th>
+  522                  <td><span id="od_tot_price">A $<?php echo number_format($tot_price); ?></span></td>
+  523              </tr>
+
+/Applications/MAMP/htdocs/sungwoong1/shop/orderform.sub.php:
+  524              <?php } ?>
+  525              <tr>
+  526:                 <th>총 주문금액</th>
+  527                  <td><span id="od_tot_price">A $<?php echo number_format($tot_price); ?></span></td>
+  528              </tr>
+
+2 matches across 2 files

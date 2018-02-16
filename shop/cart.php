@@ -142,9 +142,9 @@ include_once('./_head.php');
                 <input type="hidden" name="it_name[<?php echo $i; ?>]"  value="<?php echo get_text($row['it_name']); ?>">
                 <?php echo $it_name.$mod_options; ?>
             </td>
-            <td class="td_num"><?php echo number_format($sum['qty']); ?></td>
+            <td class="td_num"><?php echo number_format($sum['qty'],2); ?></td>
             <td class="td_numbig"><?php echo number_format($row['ct_price']); ?></td>
-            <td class="td_numbig"><span id="sell_price_<?php echo $i; ?>"><?php echo number_format($sell_price); ?></span></td>
+            <td class="td_numbig"><span id="sell_price_<?php echo $i; ?>"><?php echo number_format($sell_price,2); ?></span></td>
             <td class="td_numbig"><?php echo number_format($point); ?></td>
             <td class="td_dvr"><?php echo $ct_send_cost; ?></td>
             <td class="td_chk">
@@ -176,7 +176,7 @@ include_once('./_head.php');
     <dl id="sod_bsk_tot">
         <?php if ($send_cost > 0) { // 배송비가 0 보다 크다면 (있다면) ?>
         <dt class="sod_bsk_dvr">배송비</dt>
-        <dd class="sod_bsk_dvr"><strong><?php echo number_format($send_cost); ?> 원</strong></dd>
+        <dd class="sod_bsk_dvr"><strong>A $ <?php echo number_format($send_cost,2); ?> </strong></dd>
         <?php } ?>
 
         <?php
@@ -184,7 +184,7 @@ include_once('./_head.php');
         ?>
 
         <dt class="sod_bsk_cnt">총계 가격/포인트</dt>
-        <dd class="sod_bsk_cnt"><strong><?php echo number_format($tot_price); ?> 원 / <?php echo number_format($tot_point); ?> 점</strong></dd>
+        <dd class="sod_bsk_cnt"><strong>A $<?php echo number_format($tot_price,2); ?>  / <?php echo number_format($tot_point); ?> 점</strong></dd>
         <?php } ?>
 
     </dl>
