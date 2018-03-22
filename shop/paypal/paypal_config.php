@@ -1,8 +1,9 @@
 <?php
+//if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 //Seller Sandbox Credentials- Sample credentials already provided
-define("PP_USER_SANDBOX", "bobo_api1.naver.com");
-define("PP_PASSWORD_SANDBOX", "FF8XVT2KHHV5UGMF");
-define("PP_SIGNATURE_SANDBOX", "AYm-UvofG9njKKDeEI8KzfvIh05IAY-D.1FOn0hFlvdzSBUCQNgMtSYX");
+define("PP_USER_SANDBOX", $default['de_paypal_client_api_id']);
+define("PP_PASSWORD_SANDBOX", $default['de_paypal_client_api_pw']);
+define("PP_SIGNATURE_SANDBOX", $default['de_paypal_client_api_signature']);
 
 //Seller Live credentials.
 define("PP_USER","seller_username_here");
@@ -16,8 +17,11 @@ define("ADDRESS_OVERRIDE", true);
 define("RETURN_URL_MARK",'http://'.$_SERVER['HTTP_HOST'].preg_replace('/paypal_ec_redirect.php/','return.php',$_SERVER['SCRIPT_NAME']));
 
 //The URL in your application where Paypal returns control to -after success (RETURN_URL) and after cancellation of the order (CANCEL_URL) 
-define("RETURN_URL",'http://'.$_SERVER['HTTP_HOST'].preg_replace('/paypal_ec_redirect.php/','review.php',$_SERVER['SCRIPT_NAME']));
-define("CANCEL_URL",'http://'.$_SERVER['HTTP_HOST'].preg_replace('/paypal_ec_redirect.php/','cancel.php',$_SERVER['SCRIPT_NAME']));
+//define("RETURN_URL",G5_SHOP_PATH."/orderformupdate.php");
+//define("CANCEL_URL",G5_SHOP_PATH.'/orderform.php');
+
+define("RETURN_URL",'http://'.$_SERVER['HTTP_HOST'].'/sungwoong1/shop/paypal/return.php');
+define("CANCEL_URL",'http://'.$_SERVER['HTTP_HOST'].'/sungwoong1/shop/index.php');
 
 //Whether Sandbox environment is being used, Keep it true for testing
 define("SANDBOX_FLAG", true);

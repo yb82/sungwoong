@@ -105,6 +105,12 @@ else if ($pp_settle_case == "신용카드")
     $pp_bank_account    = $card_name;
     $pg_price           = $amount;
 }
+else if($pp_settle_case =="Paypal"){
+    if(isset($_POST['PAYMENTREQUEST_0_AMT'])){
+        
+    }
+    include G5_SHOP_PATH.'/paypal/return.php';
+}
 else
 {
     die("od_settle_case Error!!!");

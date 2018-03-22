@@ -28,7 +28,7 @@ function get_order_status_sum($status)
 
     $info = array();
     $info['count'] = (int)$row['cnt'];
-    $info['price'] = (int)$row['price'];
+    $info['price'] = (float)$row['price'];
     $info['href'] = './orderlist.php?od_status='.urlencode($status);
 
     return $info;
@@ -46,8 +46,8 @@ function get_order_date_sum($date)
     $row = sql_fetch($sql);
 
     $info = array();
-    $info['order'] = (int)$row['orderprice'];
-    $info['cancel'] = (int)$row['cancelprice'];
+    $info['order'] = (float)$row['orderprice'];
+    $info['cancel'] = (float)$row['cancelprice'];
 
     return $info;
 }
@@ -91,7 +91,7 @@ function get_order_settle_sum($date)
                 where SUBSTRING(od_time, 1, 10) = '$date'
                   and ( od_cart_coupon > 0 or od_coupon > 0 or od_send_coupon > 0 ) ";
     $row = sql_fetch($sql);
-    $info['쿠폰']['price'] = (int)$row['price'];
+    $info['쿠폰']['price'] = (float)$row['price'];
     $info['쿠폰']['count'] = (int)$row['cnt'];
 
     return $info;
@@ -224,7 +224,7 @@ function get_max_value($arr)
                     ?>
                     <th scope="row">주문 -&gt; 입금</th>
                     <td class="td_numbig"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price'],2); ?></a></td>
                 </tr>
                 <tr>
                     <?php
@@ -232,7 +232,7 @@ function get_max_value($arr)
                     ?>
                     <th scope="row">입금 -&gt; 준비</th>
                     <td class="td_numbig"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price'],2); ?></a></td>
                 </tr>
                 <tr>
                     <?php
@@ -240,7 +240,7 @@ function get_max_value($arr)
                     ?>
                     <th scope="row">준비 -&gt; 배송</th>
                     <td class="td_numbig"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price'],2); ?></a></td>
                 </tr>
                 <tr>
                     <?php
@@ -248,7 +248,7 @@ function get_max_value($arr)
                     ?>
                     <th scope="row">배송 -&gt; 완료</th>
                     <td class="td_numbig"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price'],2); ?></a></td>
                 </tr>
                 </tbody>
                 </table>

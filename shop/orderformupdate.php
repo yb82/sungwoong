@@ -424,9 +424,24 @@ else if ($od_settle_case == "KAKAOPAY")
     if($od_misu == 0)
         $od_status      = '입금';
 }
+else if($od_settle_case =="Paypal"){
+    include G5_SHOP_PATH.'/paypal/return.php';
+    print_r($resArrayDoExpressCheckout);
+    // $od_tno             = $tno;
+    // $od_receipt_price   = $amount;
+    // $od_receipt_point   = $i_temp_point;
+    // $od_receipt_time    = preg_replace("/([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})/", "\\1-\\2-\\3 \\4:\\5:\\6", $app_time);
+    // $od_bank_account    = $od_settle_case;
+    // $od_deposit_name    = $od_name;
+    // $od_bank_account    = $bank_name;
+    // $pg_price           = $amount;
+    // $od_misu            = $i_price - $od_receipt_price;
+    // if($od_misu == 0)
+    //     $od_status      = '입금';
+}
 else
-{
-    die("od_settle_case Error!!!");
+{   
+    die("od_settle_case Error!!!".$od_settle_case."123");
 }
 
 $od_pg = $default['de_pg_service'];

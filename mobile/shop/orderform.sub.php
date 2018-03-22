@@ -551,6 +551,12 @@ if($is_kakaopay_use) {
             echo '<li><input type="radio" id="od_settle_kakaopay" name="od_settle_case" value="KAKAOPAY" '.$checked.'> <label for="od_settle_kakaopay" class="kakaopay_icon">KAKAOPAY</label></li>'.PHP_EOL;
             $checked = '';
         }
+         // 카카오페이
+        if($is_paypal_use) {
+            $multi_settle++;
+            echo '<li><input type="radio" id="od_settle_papal" name="od_settle_case" value="paypal" '.$checked.'> <label for="od_settle_paypal" ><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr>'.PHP_EOL;
+            $checked = '';
+        }
 
         // 무통장입금 사용
         if ($default['de_bank_use']) {

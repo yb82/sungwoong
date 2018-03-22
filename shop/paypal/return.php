@@ -4,14 +4,8 @@
 	*/
 
 	require_once ("paypal_functions.php"); 
-	if(!isset($_SESSION['EXPRESS_MARK'])) {
-		include('header.php');
-	?>
-		<span class="span4">
-		</span>
-		<span class="span5">
-	<?php
-	}
+
+	
 	/*
 	* The paymentAmount is the total value of the shopping cart(in real apps), here it was set 
     * in paypalfunctions.php in a session variable 
@@ -26,7 +20,7 @@
 
 	// Check to see if the Request object contains a variable named 'token'	or Session object contains a variable named TOKEN 
 	$token = "";
-	
+	//echo "hello1";
 	if (isset($_REQUEST['token']))
 	{
 		$token = $_REQUEST['token'];
@@ -38,6 +32,7 @@
 	// If the Request object contains the variable 'token' then it means that the user is coming from PayPal site.	
 	if ( $token != "" )
 	{
+		//echo "hello2";
 		/*
 		* Calls the GetExpressCheckoutDetails API call
 		*/
@@ -79,7 +74,7 @@
 			$ErrorShortMsg = urldecode($resArrayGetExpressCheckout["L_SHORTMESSAGE0"]);
 			$ErrorLongMsg = urldecode($resArrayGetExpressCheckout["L_LONGMESSAGE0"]);
 			$ErrorSeverityCode = urldecode($resArrayGetExpressCheckout["L_SEVERITYCODE0"]);
-
+			print_r($resArrayGetExpressCheckout); 
 			echo "GetExpressCheckoutDetails API call failed. ";
 			echo "Detailed Error Message: " . $ErrorLongMsg;
 			echo "Short Error Message: " . $ErrorShortMsg;
@@ -107,8 +102,8 @@
 	$ackDoExpressCheckout = strtoupper($resArrayDoExpressCheckout["ACK"]);
 	//include('header.php');
 
-	session_unset();   // free all session variables
-	session_destroy(); //destroy session
+	//session_unset();   // free all session variables
+	//session_destroy(); //destroy session
 	if( $ackDoExpressCheckout == "SUCCESS" || $ackDoExpressCheckout == "SUCCESSWITHWARNING" )
 	{
 		$transactionId		= $resArrayDoExpressCheckout["PAYMENTINFO_0_TRANSACTIONID"]; // ' Unique transaction ID of the payment. Note:  If the PaymentAction of the request was Authorization or Order, this value is your AuthorizationID for use with the Authorization & Capture APIs. 
@@ -134,28 +129,7 @@
 		* The reason for a reversal if TransactionType is reversal 
 		*/
 		$reasonCode		= $resArrayDoExpressCheckout["PAYMENTINFO_0_REASONCODE"];   
-		?>
-			
-    			<div class="hero-unit">
-    			<!-- Display the Transaction Details-->
-    			<h4> <?php echo($firstName); ?>
-    				<?php echo($lastName); ?> , Thank you for your Order </h4>
-    			
-    			<h4> Shipping Details: </h4>
-				<?php echo($shipToName) ?><br>
-				<?php echo($shipToStreet) ?><br>
-				<?php echo($shipToCity) ?><br>
-				<?php echo($shipToState) ?>- <?php echo($shipToZip) ?></p>
-    			<p>Transaction ID: <?php  echo($transactionId);?> </p>
-    			<p>Transaction Type: <?php  echo($transactionType);?> </p>
-    			<p>Payment Total Amount: <?php  echo($amt);?> </p>
-    			<p>Currency Code: <?php  echo($currencyCode);?> </p>
-    			<p>Payment Status: <?php  echo($paymentStatus);?> </p>
-    			<p>Payment Type: <?php  echo($paymentType);?> </p>
-    			<h3> Click <a href='index.php'>here </a> to return to Home Page</h3>
-    			</div>
-    		
-		<?php
+		echo json_encode($resArrayDoExpressCheckout);
 	}
 	else  
 	{
@@ -189,12 +163,5 @@
 			echo "Error Severity Code: " . $ErrorSeverityCode;
 		}
 	}
-	if(!isset($_SESSION['EXPRESS_MARK'])) {
-		?>
-		</span>
-		<span class="span3">
-		</span>
-		<?php 
-		include('footer.php');
-	}		
+	
 ?>

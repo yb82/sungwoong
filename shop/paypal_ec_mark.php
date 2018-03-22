@@ -1,7 +1,15 @@
 <?php
+include_once('./_common.php');
+include_once("./paypal/paypal_config.php");
+include_once("./paypal/paypal_functions.php");
 
-//don't change
 
+// //'------------------------------------
+// //' Calls the SetExpressCheckout API call
+// //'
+// //' The CallMarkExpressCheckout function is defined in the file paypal_functions.php,
+// //' it is included at the top of this file.
+// //'-------------------------------------------------
 
 //$itemDetail = $_SESSION['post_value'];
 $shippingDetail = $_POST;
@@ -15,7 +23,6 @@ if($ack=="SUCCESS" || $ack=="SUCCESSWITHWARNING")  //if SetExpressCheckout API c
 {
 	
 	echo $resArray["TOKEN"];
-
 } 
 else  
 {
@@ -32,7 +39,5 @@ else
 	echo "Error Code: " . $ErrorCode;
 	echo "Error Severity Code: " . $ErrorSeverityCode;
 }
-
-
 
 ?>

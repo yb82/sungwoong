@@ -15,14 +15,14 @@
 		if($_REQUEST["checkout"] || isset($_SESSION['checkout'])) {
 			$_SESSION['checkout'] = $_POST['checkout'];
 		}
-	$_SESSION['post_value'] = $_POST;
+		$_SESSION['post_value'] = $_POST;
 	
 	//Assign the Return and Cancel to the Session object for ExpressCheckout Mark
-	$returnURL = RETURN_URL_MARK;
-	$_SESSION['post_value']['RETURN_URL'] = $returnURL;
-	$_SESSION['post_value']['CANCEL_URL'] = $cancelURL;
-	$_SESSION['EXPRESS_MARK'] = true;
-   include('header.php');
+		$returnURL = RETURN_URL_MARK;
+		$_SESSION['post_value']['RETURN_URL'] = $returnURL;
+		$_SESSION['post_value']['CANCEL_URL'] = $cancelURL;
+		$_SESSION['EXPRESS_MARK'] = true;
+  	    include('header.php');
 ?>
    <div class="span4">
    </div>
@@ -394,17 +394,12 @@
 				PAYMENTREQUEST_0_TAXAMT: 2,
 				PAYMENTREQUEST_0_AMT: total_amt ,
 				paymentType:'SALE',
-				PAYMENTREQUEST_0_CURRENCYCODE: 'USD',
-				ADDROVERRIDE: 1,
-				PAYMENTREQUEST_0_SHIPTOSTREET: shipToStreet,
-				PAYMENTREQUEST_0_SHIPTOSTREET2: shipToStreet2,
-				PAYMENTREQUEST_0_SHIPTOCITY: shipToCity,
-				PAYMENTREQUEST_0_SHIPTOSTATE: shipToState,
-				PAYMENTREQUEST_0_SHIPTOZIP : shipToZip,
-				PAYMENTREQUEST_0_SHIPTOCOUNTRY: shipToCountry,
-				L_PAYMENTREQUEST_FIRSTNAME: firstName,
-				L_PAYMENTREQUEST_LASTNAME: lastName};
-           jQuery.post(CREATE_PAYMENT_URL,formdata,function(data) {
+				PAYMENTREQUEST_0_CURRENCYCODE: 'AUD',
+				
+				};
+			console.log(formdata);																	
+
+            jQuery.post(CREATE_PAYMENT_URL,formdata,function(data) {
                 resolve(data); // no data.token, b/c data.token is json format
             });
 
@@ -429,28 +424,28 @@
    <?php
    } else {
 
-   $resArray = CallShortcutExpressCheckout ($_POST, $returnURL, $cancelURL);
-   $ack = strtoupper($resArray["ACK"]);
-   if($ack=="SUCCESS" || $ack=="SUCCESSWITHWARNING")  //if SetExpressCheckout API call is successful
-   {
-		//RedirectToPayPal ( $resArray["TOKEN"] );
-   	 echo($resArray["TOKEN"]);
-   	 return;
-   } 
-   else  
-   {
-   	//Display a user friendly Error on the page using any of the following error information returned by PayPal
-   	$ErrorCode = urldecode($resArray["L_ERRORCODE0"]);
-   	$ErrorShortMsg = urldecode($resArray["L_SHORTMESSAGE0"]);
-   	$ErrorLongMsg = urldecode($resArray["L_LONGMESSAGE0"]);
-   	$ErrorSeverityCode = urldecode($resArray["L_SEVERITYCODE0"]);
-   	
-   	echo "SetExpressCheckout API call failed. ";
-   	echo "Detailed Error Message: " . $ErrorLongMsg;
-   	echo "Short Error Message: " . $ErrorShortMsg;
-   	echo "Error Code: " . $ErrorCode;
-   	echo "Error Severity Code: " . $ErrorSeverityCode;
-   }
+	   $resArray = CallShortcutExpressCheckout ($_POST, $returnURL, $cancelURL);
+	   $ack = strtoupper($resArray["ACK"]);
+	   if($ack=="SUCCESS" || $ack=="SUCCESSWITHWARNING")  //if SetExpressCheckout API call is successful
+	   {
+			//RedirectToPayPal ( $resArray["TOKEN"] );
+	   	 echo($resArray["TOKEN"]);
+	   	 return;
+	   } 
+	   else  
+	   {
+	   	//Display a user friendly Error on the page using any of the following error information returned by PayPal
+	   	$ErrorCode = urldecode($resArray["L_ERRORCODE0"]);
+	   	$ErrorShortMsg = urldecode($resArray["L_SHORTMESSAGE0"]);
+	   	$ErrorLongMsg = urldecode($resArray["L_LONGMESSAGE0"]);
+	   	$ErrorSeverityCode = urldecode($resArray["L_SEVERITYCODE0"]);
+	   	
+	   	echo "SetExpressCheckout API call failed. ";
+	   	echo "Detailed Error Message: " . $ErrorLongMsg;
+	   	echo "Short Error Message: " . $ErrorShortMsg;
+	   	echo "Error Code: " . $ErrorCode;
+	   	echo "Error Severity Code: " . $ErrorSeverityCode;
+	   }
    }
    
 ?>

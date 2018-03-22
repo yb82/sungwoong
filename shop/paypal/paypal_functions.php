@@ -6,7 +6,7 @@
 	if (session_id() == "") 
 	session_start();
 
-	require('paypal_config.php');
+	
 
 	// Use values from config.php
 	$PROXY_HOST = PROXY_HOST;
