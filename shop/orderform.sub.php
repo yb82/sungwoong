@@ -187,7 +187,7 @@ if($is_kakaopay_use) {
             <td>
                 <input type="hidden" name="it_id[<?php echo $i; ?>]"    value="<?php echo $row['it_id']; ?>">
                 <input type="hidden" name="it_name[<?php echo $i; ?>]"  value="<?php echo get_text($row['it_name']); ?>">
-                <input type="hidden" name="it_price[<?php echo $i; ?>]" value="<?php echo $sell_price; ?>">
+                <input type="hidden" name="it_price[<?php echo $i; ?>]" value="<?php echo number_format($sell_price,2); ?>">
                 <input type="hidden" name="cp_id[<?php echo $i; ?>]" value="">
                 <input type="hidden" name="cp_price[<?php echo $i; ?>]" value="0">
                 <?php if($default['de_tax_flag_use']) { ?>
@@ -249,9 +249,9 @@ if($is_kakaopay_use) {
     </dl>
     <!-- } 주문상품 합계 끝 -->
 
-    <input type="hidden" name="od_price"    value="<?php echo $tot_sell_price; ?>">
-    <input type="hidden" name="org_od_price"    value="<?php echo $tot_sell_price; ?>">
-    <input type="hidden" name="od_send_cost" value="<?php echo $send_cost; ?>">
+    <input type="hidden" name="od_price"    value="<?php echo number_format( $tot_sell_price,2); ?>">
+    <input type="hidden" name="org_od_price"    value="<?php echo number_format( $tot_sell_price,2); ?>">
+    <input type="hidden" name="od_send_cost" value="<?php echo number_format( $send_cost,2); ?>">
     <input type="hidden" name="od_send_cost2" value="0">
     <input type="hidden" name="item_coupon" value="0">
     <input type="hidden" name="od_coupon" value="0">
@@ -1154,6 +1154,169 @@ function calculate_tax()
     $("input[name=comm_vat_mny]").val(vat_mny);
     $("input[name=comm_free_mny]").val(comm_free_mny);
 }
+function forderform_check1(f)
+{
+    // 재고체크
+    var stock_msg = order_stock_check();
+    if(stock_msg != "") {
+        alert(stock_msg);
+        return false;
+    }
+
+    errmsg = "";
+    errfld = "";
+    var deffld = "";
+
+    check_field(f.od_name, "주문하시는 분 이름을 입력하십시오.");
+    if (typeof(f.od_pwd) != 'undefined')
+    {
+        clear_field(f.od_pwd);
+        if( (f.od_pwd.value.length<3) || (f.od_pwd.value.search(/([^A-Za-z0-9]+)/)!=-1) )
+            error_field(f.od_pwd, "회원이 아니신 경우 주문서 조회시 필요한 비밀번호를 3자리 이상 입력해 주십시오.");
+    }
+    check_field(f.od_tel, "주문하시는 분 전화번호를 입력하십시오.");
+    check_field(f.od_addr1, "주소검색을 이용하여 주문하시는 분 주소를 입력하십시오.");
+    //check_field(f.od_addr2, " 주문하시는 분의 상세주소를 입력하십시오.");
+    check_field(f.od_zip, "");
+
+    clear_field(f.od_email);
+    if(f.od_email.value=='' || f.od_email.value.search(/(\S+)@(\S+)\.(\S+)/) == -1)
+        error_field(f.od_email, "E-mail을 바르게 입력해 주십시오.");
+
+    if (typeof(f.od_hope_date) != "undefined")
+    {
+        clear_field(f.od_hope_date);
+        if (!f.od_hope_date.value)
+            error_field(f.od_hope_date, "희망배송일을 선택하여 주십시오.");
+    }
+
+    check_field(f.od_b_name, "받으시는 분 이름을 입력하십시오.");
+    check_field(f.od_b_tel, "받으시는 분 전화번호를 입력하십시오.");
+    check_field(f.od_b_addr1, "주소검색을 이용하여 받으시는 분 주소를 입력하십시오.");
+    //check_field(f.od_b_addr2, "받으시는 분의 상세주소를 입력하십시오.");
+    check_field(f.od_b_zip, "");
+
+    var od_settle_bank = document.getElementById("od_settle_bank");
+    if (od_settle_bank) {
+        if (od_settle_bank.checked) {
+            check_field(f.od_bank_account, "계좌번호를 선택하세요.");
+            check_field(f.od_deposit_name, "입금자명을 입력하세요.");
+        }
+    }
+
+    // 배송비를 받지 않거나 더 받는 경우 아래식에 + 또는 - 로 대입
+    f.od_send_cost.value = parseFloat(f.od_send_cost.value);
+
+    if (errmsg)
+    {
+        alert(errmsg);
+        errfld.focus();
+        return false;
+    }
+
+    var settle_case = document.getElementsByName("od_settle_case");
+    var settle_check = false;
+    var settle_method = "";
+    for (i=0; i<settle_case.length; i++)
+    {
+        if (settle_case[i].checked)
+        {
+            settle_check = true;
+            settle_method = settle_case[i].value;
+            break;
+        }
+    }
+    if (!settle_check)
+    {
+        alert("결제방식을 선택하십시오.");
+        return false;
+    }
+
+    var od_price = parseFloat(f.od_price.value);
+    var send_cost = parseFloat(f.od_send_cost.value);
+    var send_cost2 = parseFloat(f.od_send_cost2.value);
+    var send_coupon = parseFloat(f.od_send_coupon.value);
+
+    var max_point = 0;
+    if (typeof(f.max_temp_point) != "undefined")
+        max_point  = parseFloat(f.max_temp_point.value);
+
+    var temp_point = 0;
+    if (typeof(f.od_temp_point) != "undefined") {
+        if (f.od_temp_point.value)
+        {
+            var point_unit = parseFloat(<?php echo $default['de_settle_point_unit']; ?>);
+            temp_point = parseFloat(f.od_temp_point.value);
+
+            if (temp_point < 0) {
+                alert("포인트를 0 이상 입력하세요.");
+                f.od_temp_point.select();
+                return false;
+            }
+
+            if (temp_point > od_price) {
+                alert("상품 주문금액(배송비 제외) 보다 많이 포인트결제할 수 없습니다.");
+                f.od_temp_point.select();
+                return false;
+            }
+
+            if (temp_point > <?php echo (int)$member['mb_point']; ?>) {
+                alert("회원님의 포인트보다 많이 결제할 수 없습니다.");
+                f.od_temp_point.select();
+                return false;
+            }
+
+            if (temp_point > max_point) {
+                alert(max_point + "점 이상 결제할 수 없습니다.");
+                f.od_temp_point.select();
+                return false;
+            }
+
+            if (parseFloat(parseFloat(temp_point / point_unit) * point_unit) != temp_point) {
+                alert("포인트를 "+String(point_unit)+"점 단위로 입력하세요.");
+                f.od_temp_point.select();
+                return false;
+            }
+
+            // pg 결제 금액에서 포인트 금액 차감
+            if(settle_method != "무통장") {
+                f.good_mny.value = od_price + send_cost + send_cost2 - send_coupon - temp_point;
+            }
+        }
+    }
+
+    var tot_price = od_price + send_cost + send_cost2 - send_coupon - temp_point;
+
+    if (document.getElementById("od_settle_iche")) {
+        if (document.getElementById("od_settle_iche").checked) {
+            if (tot_price < 150) {
+                alert("계좌이체는 150원 이상 결제가 가능합니다.");
+                return false;
+            }
+        }
+    }
+
+    if (document.getElementById("od_settle_card")) {
+        if (document.getElementById("od_settle_card").checked) {
+            if (tot_price < 1000) {
+                alert("신용카드는 1000원 이상 결제가 가능합니다.");
+                return false;
+            }
+        }
+    }
+
+    if (document.getElementById("od_settle_hp")) {
+        if (document.getElementById("od_settle_hp").checked) {
+            if (tot_price < 350) {
+                alert("휴대폰은 350원 이상 결제가 가능합니다.");
+                return false;
+            }
+        }
+    }
+
+    return true;
+    
+}
 
 function forderform_check(f)
 {
@@ -1563,7 +1726,7 @@ $(function(){
 
         var EXECUTE_PAYMENT_URL  = g5_url+'/shop/paypal.php';
 
-         
+        var formchecker = false; 
 
             paypal.Button.render({
 
@@ -1578,22 +1741,39 @@ $(function(){
                 
 
                 payment: function(resolve) {
-            
-              
-                var formdata = {PAYMENTREQUEST_0_AMT:  <?php  echo number_format($tot_price,2); ?> , paymentType:'SALE', PAYMENTREQUEST_0_CURRENCYCODE: 'AUD', currencyCodeType:'AUD', ADDROVERRIDE: 1};
-                jQuery.post(CREATE_PAYMENT_URL,formdata,function(data) {
-                resolve(data); // no data.token, b/c data.token is json format
+            // todo :form checker.
+             // if(forderform_check1(this.form)){
+                  formchecker = true;
+                   var formdata = {PAYMENTREQUEST_0_AMT:  <?php  echo number_format($tot_price,2); ?> , paymentType:'SALE', PAYMENTREQUEST_0_CURRENCYCODE: 'AUD', currencyCodeType:'AUD', ADDROVERRIDE: 1};
+                    jQuery.post(CREATE_PAYMENT_URL,formdata,function(data) {
+
+                  resolve(data); // no
+
+               // } else return false;
+             
+
             });
 
         },
         /* Optional: show a 'Pay Now' button in the checkout flow rather than Continue */
         commit: true,
         onAuthorize: function(data, actions) {
+                              document.getElementById("payer").value = data.payerID;
           
          jQuery.post(EXECUTE_PAYMENT_URL, { token: data.paymentToken, PayerID: data.payerID}, function(response) {
-             "{"TOKEN":"EC-14K180155M2349315","SUCCESSPAGEREDIRECTREQUESTED":"false","TIMESTAMP":"2018-03-22T19:11:15Z","CORRELATIONID":"9b36f840af778","ACK":"Success","VERSION":"109.0","BUILD":"000000","INSURANCEOPTIONSELECTED":"false","SHIPPINGOPTIONISDEFAULT":"false","PAYMENTINFO_0_TRANSACTIONID":"21L100876G986760E","PAYMENTINFO_0_TRANSACTIONTYPE":"expresscheckout","PAYMENTINFO_0_PAYMENTTYPE":"instant","PAYMENTINFO_0_ORDERTIME":"2018-03-22T19:11:14Z","PAYMENTINFO_0_AMT":"13.12","PAYMENTINFO_0_FEEAMT":"0.61","PAYMENTINFO_0_TAXAMT":"0.00","PAYMENTINFO_0_CURRENCYCODE":"AUD","PAYMENTINFO_0_PAYMENTSTATUS":"Completed","PAYMENTINFO_0_PENDINGREASON":"None","PAYMENTINFO_0_REASONCODE":"None","PAYMENTINFO_0_PROTECTIONELIGIBILITY":"Eligible","PAYMENTINFO_0_PROTECTIONELIGIBILITYTYPE":"ItemNotReceivedEligible,UnauthorizedPaymentEligible","PAYMENTINFO_0_SELLERPAYPALACCOUNTID":"bobo@naver.com","PAYMENTINFO_0_SECUREMERCHANTACCOUNTID":"NWMMCB76DV2CE","PAYMENTINFO_0_ERRORCODE":"0","PAYMENTINFO_0_ACK":"Success"}"
-            document.querySelector('#tid').style.display = 'none';
-            document.querySelector('#result').innerHTML = response;
+            var aa = jQuery.parseJSON(response);
+
+            
+            document.getElementById("tid").value = aa.PAYMENTINFO_0_TRANSACTIONID;
+            document.getElementById("totalamt").value = aa.PAYMENTINFO_0_AMT;
+            document.getElementById("transaction_time").value = aa.PAYMENTINFO_0_ORDERTIME;
+            document.getElementById("ack").value = aa.ACK;
+            if(aa.ACK=="Success"){
+           
+                    document.getElementById("forderform").submit();
+          
+            }
+          
           });
         },
 

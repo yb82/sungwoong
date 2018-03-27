@@ -19,6 +19,7 @@ else
 if (get_cart_count($tmp_cart_id) == 0)// 장바구니에 담기
     alert('장바구니가 비어 있습니다.\\n\\n이미 주문하셨거나 장바구니에 담긴 상품이 없는 경우입니다.', G5_SHOP_URL.'/cart.php');
 
+
 $error = "";
 // 장바구니 상품 재고 검사
 $sql = " select it_id,
@@ -53,21 +54,20 @@ if ($error != "")
     alert($error);
 }
 
-$i_price     = (int)$_POST['od_price'];
-$i_send_cost  = (int)$_POST['od_send_cost'];
-$i_send_cost2  = (int)$_POST['od_send_cost2'];
-$i_send_coupon  = (int)$_POST['od_send_coupon'];
+$i_price     = (float)$_POST['od_price'];
+$i_send_cost  = (float)$_POST['od_send_cost'];
+$i_send_cost2  = (float)$_POST['od_send_cost2'];
+$i_send_coupon  = (float)$_POST['od_send_coupon'];
 $i_temp_point = (int)$_POST['od_temp_point'];
-
 
 // 주문금액이 상이함
 $sql = " select SUM(IF(io_type = 1, (io_price * ct_qty), ((ct_price + io_price) * ct_qty))) as od_price,
               COUNT(distinct it_id) as cart_count
             from {$g5['g5_shop_cart_table']} where od_id = '$tmp_cart_id' and ct_select = '1' ";
 $row = sql_fetch($sql);
-$tot_ct_price = $row['od_price'];
+$tot_ct_price = (float)$row['od_price'];
 $cart_count = $row['cart_count'];
-$tot_od_price = $tot_ct_price;
+$tot_od_price = number_format($tot_ct_price,2);
 
 // 쿠폰금액계산
 $tot_cp_price = 0;
@@ -178,7 +178,7 @@ if($is_member) {
     $tot_cp_price = $tot_it_cp_price + $tot_od_cp_price;
 }
 
-if ((int)($row['od_price'] - $tot_cp_price) !== $i_price) {
+if ((number_format( $row['od_price'],2) - $tot_cp_price) !== $i_price) {
     die("Error.");
 }
 
@@ -231,11 +231,14 @@ $od_b_zip2  = substr($od_b_zip, 3);
 $zipcode = $od_b_zip;
 $sql = " select sc_id, sc_price from {$g5['g5_shop_sendcost_table']} where sc_zip1 <= '$zipcode' and sc_zip2 >= '$zipcode' ";
 $tmp = sql_fetch($sql);
+
 if(!$tmp['sc_id'])
     $send_cost2 = 0;
 else
-    $send_cost2 = (int)$tmp['sc_price'];
-if($send_cost2 !== $i_send_cost2)
+    $send_cost2 = (float)$tmp['sc_price'];
+
+
+if($send_cost2 != $i_send_cost2)
     die("Error...");
 
 // 결제포인트가 상이함
@@ -246,7 +249,7 @@ if ($is_member && $config['cf_use_point'])
     if($member['mb_point'] >= $default['de_settle_min_point']) {
         $temp_point = (int)$default['de_settle_max_point'];
 
-        if($temp_point > (int)$tot_od_price)
+        if($temp_point > (float)$tot_od_price)
             $temp_point = (int)$tot_od_price;
 
         if($temp_point > (int)$member['mb_point'])
@@ -256,6 +259,7 @@ if ($is_member && $config['cf_use_point'])
         $temp_point = (int)((int)($temp_point / $point_unit) * $point_unit);
     }
 }
+
 
 if (($i_temp_point > (int)$temp_point || $i_temp_point < 0) && $config['cf_use_point'])
     die("Error....");
@@ -267,6 +271,7 @@ if ($od_temp_point)
 }
 
 $i_price = $i_price + $i_send_cost + $i_send_cost2 - $i_temp_point - $i_send_coupon;
+
 $order_price = $tot_od_price + $send_cost + $send_cost2 - $tot_sc_cp_price - $od_temp_point;
 
 $od_status = '주문';
@@ -425,19 +430,23 @@ else if ($od_settle_case == "KAKAOPAY")
         $od_status      = '입금';
 }
 else if($od_settle_case =="Paypal"){
-    include G5_SHOP_PATH.'/paypal/return.php';
-    print_r($resArrayDoExpressCheckout);
-    // $od_tno             = $tno;
-    // $od_receipt_price   = $amount;
-    // $od_receipt_point   = $i_temp_point;
-    // $od_receipt_time    = preg_replace("/([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})/", "\\1-\\2-\\3 \\4:\\5:\\6", $app_time);
-    // $od_bank_account    = $od_settle_case;
-    // $od_deposit_name    = $od_name;
-    // $od_bank_account    = $bank_name;
-    // $pg_price           = $amount;
-    // $od_misu            = $i_price - $od_receipt_price;
-    // if($od_misu == 0)
-    //     $od_status      = '입금';
+    if(isset($_POST["ack"])){
+        $ack = strtoupper($_POST['ack']);
+        if($ack == "SUCCESS"){
+            $od_tno = $_POST["tid"];
+            $od_receipt_point   = $i_temp_point;
+            $od_receipt_price = $_POST["totalamt"];
+            $od_receipt_time = G5_TIME_YMDHIS;
+            $pg_price =  $_POST["totalamt"];
+            $od_misu            = $i_price - $od_receipt_price;
+            if($od_misu == 0)
+                 $od_status      = '입금';
+            
+
+        }
+    }
+    
+    
 }
 else
 {   
@@ -757,7 +766,7 @@ if($config['cf_sms_use'] && ($default['de_sms_use2'] || $default['de_sms_use3'])
             $sms_content = str_replace("{보낸분}", $od_name, $sms_content);
             $sms_content = str_replace("{받는분}", $od_b_name, $sms_content);
             $sms_content = str_replace("{주문번호}", $od_id, $sms_content);
-            $sms_content = str_replace("{주문금액}", number_format($tot_ct_price + $od_send_cost + $od_send_cost2), $sms_content);
+            $sms_content = str_replace("{주문금액}", "$".number_format($tot_ct_price + $od_send_cost + $od_send_cost2,2), $sms_content);
             $sms_content = str_replace("{회원아이디}", $member['mb_id'], $sms_content);
             $sms_content = str_replace("{회사명}", $default['de_admin_company_name'], $sms_content);
 
