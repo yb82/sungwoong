@@ -224,7 +224,7 @@ function get_max_value($arr)
                     ?>
                     <th scope="row">주문 -&gt; 입금</th>
                     <td class="td_numbig"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price'],2); ?></a></td>
+                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo "$".number_format($info['price'],2); ?></a></td>
                 </tr>
                 <tr>
                     <?php
@@ -232,7 +232,7 @@ function get_max_value($arr)
                     ?>
                     <th scope="row">입금 -&gt; 준비</th>
                     <td class="td_numbig"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price'],2); ?></a></td>
+                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo "$".number_format($info['price'],2); ?></a></td>
                 </tr>
                 <tr>
                     <?php
@@ -240,7 +240,7 @@ function get_max_value($arr)
                     ?>
                     <th scope="row">준비 -&gt; 배송</th>
                     <td class="td_numbig"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price'],2); ?></a></td>
+                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo "$".number_format($info['price'],2); ?></a></td>
                 </tr>
                 <tr>
                     <?php
@@ -248,7 +248,7 @@ function get_max_value($arr)
                     ?>
                     <th scope="row">배송 -&gt; 완료</th>
                     <td class="td_numbig"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price'],2); ?></a></td>
+                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo "$".number_format($info['price'],2); ?></a></td>
                 </tr>
                 </tbody>
                 </table>

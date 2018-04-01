@@ -1744,6 +1744,8 @@ $(function(){
             // todo :form checker.
              // if(forderform_check1(this.form)){
                   formchecker = true;
+                  $('#paymentMethods').hide();
+                  $('#display_pay_process').show();
                    var formdata = {PAYMENTREQUEST_0_AMT:  <?php  echo number_format($tot_price,2); ?> , paymentType:'SALE', PAYMENTREQUEST_0_CURRENCYCODE: 'AUD', currencyCodeType:'AUD', ADDROVERRIDE: 1};
                     jQuery.post(CREATE_PAYMENT_URL,formdata,function(data) {
 

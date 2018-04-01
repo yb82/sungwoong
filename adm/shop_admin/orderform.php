@@ -223,10 +223,10 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     <label for="ct_qty_<?php echo $chk_cnt; ?>" class="sound_only"><?php echo get_text($opt['ct_option']); ?> 수량</label>
                     <input type="text" name="ct_qty[<?php echo $chk_cnt; ?>]" id="ct_qty_<?php echo $chk_cnt; ?>" value="<?php echo $opt['ct_qty']; ?>" required class="frm_input required" size="5">
                 </td>
-                <td class="td_num"><?php echo number_format($opt_price); ?></td>
-                <td class="td_num"><?php echo number_format($ct_price['stotal']); ?></td>
-                <td class="td_num"><?php echo number_format($opt['cp_price']); ?></td>
-                <td class="td_num"><?php echo number_format($ct_point['stotal']); ?></td>
+                <td class="td_num"><?php echo "$".number_format($opt_price,2); ?></td>
+                <td class="td_num"><?php echo "$".number_format($ct_price['stotal'],2); ?></td>
+                <td class="td_num"><?php echo "$".number_format($opt['cp_price'],2); ?></td>
+                <td class="td_num"><?php echo "$".number_format($ct_point['stotal'],2); ?></td>
                 <td class="td_sendcost_by"><?php echo $ct_send_cost; ?></td>
                 <td class="td_mngsmall"><?php echo get_yn($opt['ct_point_use']); ?></td>
                 <td class="td_mngsmall"><?php echo get_yn($opt['ct_stock_use']); ?></td>
@@ -347,9 +347,9 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
             <td class="td_numbig td_numsum"><?php echo display_price($amount['order']); ?></td>
             <td class="td_numbig"><?php echo display_price($od['od_send_cost'] + $od['od_send_cost2']); ?></td>
             <td class="td_numbig"><?php echo display_point($od['od_receipt_point']); ?></td>
-            <td class="td_numbig td_numincome"><?php echo number_format($amount['receipt']); ?>원</td>
+            <td class="td_numbig td_numincome"><?php echo "$".number_format($amount['receipt'],2); ?></td>
             <td class="td_numbig td_numcoupon"><?php echo display_price($amount['coupon']); ?></td>
-            <td class="td_numbig td_numcancel"><?php echo number_format($amount['cancel']); ?>원</td>
+            <td class="td_numbig td_numcancel"><?php echo "$".number_format($amount['cancel'],2); ?></td>
         </tr>
         </tbody>
         </table>

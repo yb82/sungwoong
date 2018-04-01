@@ -992,7 +992,8 @@ if(!isset($default['de_listtype_list_skin'])) {
 
 <section id="anc_scf_delivery">
     <h2 >배송설정</h2>
-     <?php echo $pg_anchor; ?>
+     
+ <?php echo $pg_anchor; ?>
 
     <div class="tbl_frm01 tbl_wrap">
         <table>
@@ -1002,6 +1003,17 @@ if(!isset($default['de_listtype_list_skin'])) {
             <col>
         </colgroup>
         <tbody>
+        <tr>
+            <th scope="row">무게배송비</th>
+            <td>
+                <label for="de_weit_g">기준무게</label>
+                <input type="text" name="de_weit_g" value="<?php echo $default['de_weit_g']; ?>" size="8" class="frm_input" id="de_weit_g"> g /
+                0 ~ 기준무게까지
+                <input type="text" name="de_weit_cost" value="<?php echo $default['de_weit_cost']; ?>" size="8" class="frm_input" id="de_weit_cost"> 원 /
+                이후 기준무게 당
+                <input type="text" name="de_weit_cost_add" value="<?php echo $default['de_weit_cost_add']; ?>" size="8" class="frm_input" id="de_weit_cost_add"> 원 추가
+            <td>
+        </tr>
         <tr>
             <th scope="row"><label for="de_delivery_company">배송업체</label></th>
             <td>
