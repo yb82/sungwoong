@@ -57,13 +57,19 @@ if($is_kakaopay_use) {
                         a.ct_status,
                         a.ct_send_cost,
                         a.it_sc_type,
+                        SUM(a.it_weit * a.ct_qty) as itweit,
+                        a.de_weit_g,
+                        a.de_weit_cost,
+                        a.de_weit_cost_add,
                         b.ca_id,
                         b.ca_id2,
                         b.ca_id3,
                         b.it_notax
                    from {$g5['g5_shop_cart_table']} a left join {$g5['g5_shop_item_table']} b on ( a.it_id = b.it_id )
                   where a.od_id = '$s_cart_id'
-                    and a.ct_select = '1' ";
+                   and a.ct_select = '1'
+                    and a.it_weit = b.it_weit
+                    ";
         $sql .= " group by a.it_id ";
         $sql .= " order by a.ct_id ";
         $result = sql_query($sql);
@@ -76,10 +82,13 @@ if($is_kakaopay_use) {
         $comm_vat_mny = 0; // 부가세
         $comm_free_mny = 0; // 면세금액
         $tot_tax_mny = 0;
+        $tot_weit = 0; // 무게합
+        $tot_weit_cost = 0; // 무게배송비합
 
         for ($i=0; $row=sql_fetch_array($result); $i++)
         {
             // 합계금액 계산
+            $chk_weit = chk_weit_default($row['it_name'], $row['de_weit_g'], $row['de_weit_cost'], $row['de_weit_cost_add']);
             $sql = " select SUM(IF(io_type = 1, (io_price * ct_qty), ((ct_price + io_price) * ct_qty))) as price,
                             SUM(ct_point * ct_qty) as point,
                             SUM(ct_qty) as qty
@@ -180,6 +189,7 @@ if($is_kakaopay_use) {
                 if($sendcost == 0)
                     $ct_send_cost = '무료';
             }
+            $tot_weit += $row['itweit'];
         ?>
 
         <tr>
@@ -230,6 +240,11 @@ if($is_kakaopay_use) {
     <!-- } 주문상품 확인 끝 -->
 
     <!-- 주문상품 합계 시작 { -->
+    <?php
+    // 무게배송비 합
+    if ($tot_weit > 0) 
+        $tot_weit_cost = get_weit_cost($tot_weit, $default['de_weit_g'], $default['de_weit_cost'], $default['de_weit_cost_add']);
+    ?>
     <dl id="sod_bsk_tot">
         <dt class="sod_bsk_sell">주문</dt>
         <dd class="sod_bsk_sell"><strong>A $<?php echo number_format($tot_sell_price,2); ?> </strong></dd>
@@ -239,9 +254,13 @@ if($is_kakaopay_use) {
         <?php } ?>
         <dt class="sod_bsk_dvr">배송비</dt>
         <dd class="sod_bsk_dvr">A $<strong><?php echo number_format($send_cost,2); ?> </strong></dd>
+        <dt class="sod_bsk_dvr">무게배송비</dt>
+        <dd class="sod_bsk_dvr"><strong><?php echo get_weit($tot_weit); ?> / <?php echo number_format($tot_weit_cost); ?> 원</strong></dd>
+        
         <dt class="sod_bsk_cnt">총계</dt>
         <dd class="sod_bsk_cnt">
-            <?php $tot_price = $tot_sell_price + $send_cost; // 총계 = 주문상품금액합계 + 배송비 ?>
+            
+            <?php $tot_price = $tot_sell_price + $send_cost + $tot_weit_cost;?>
             <strong id="ct_tot_price">$<?php echo number_format($tot_price,2); ?> </strong>
         </dd>
         <dt class="sod_bsk_point">포인트</dt>
@@ -253,6 +272,8 @@ if($is_kakaopay_use) {
     <input type="hidden" name="org_od_price"    value="<?php echo number_format( $tot_sell_price,2); ?>">
     <input type="hidden" name="od_send_cost" value="<?php echo number_format( $send_cost,2); ?>">
     <input type="hidden" name="od_send_cost2" value="0">
+    <input type="hidden" name="od_weit" value="<?php echo $tot_weit; ?>">
+    <input type="hidden" name="od_weit_cost" value="<?php echo $tot_weit_cost; ?>">
     <input type="hidden" name="item_coupon" value="0">
     <input type="hidden" name="od_coupon" value="0">
     <input type="hidden" name="od_send_coupon" value="0">
@@ -1021,6 +1042,7 @@ function calculate_total_price()
     var it_price, cp_price, it_notax;
     var tot_mny = comm_tax_mny = comm_vat_mny = comm_free_mny = tax_mny = vat_mny = 0;
     var send_cost = parseFloat($("input[name=od_send_cost]").val());
+    var weit_cost = parseFloat($("input[name=od_weit_cost]").val());
 
     $it_prc.each(function(index) {
         it_price = parseFloat($(this).val());
@@ -1029,7 +1051,7 @@ function calculate_total_price()
         tot_cp_price += cp_price;
     });
 
-    tot_sell_price = sell_price - tot_cp_price + send_cost;
+    tot_sell_price = sell_price - tot_cp_price + send_cost + weit_cost;
 
     $("#ct_tot_coupon").text("A $"+number_format(String(tot_cp_price,2)));
     $("#ct_tot_price").text("A $"+number_format(String(tot_sell_price),2));
@@ -1068,7 +1090,8 @@ function calculate_order_price()
     var send_cost = parseFloat($("input[name=od_send_cost]").val());
     var send_cost2 = parseFloat($("input[name=od_send_cost2]").val());
     var send_coupon = parseFloat($("input[name=od_send_coupon]").val());
-    var tot_price = sell_price + send_cost + send_cost2 - send_coupon;
+    var weit_cost = parseFloat($("input[name=od_weit_cost]").val());
+    var tot_price = sell_price + send_cost + send_cost2 - send_coupon + weit_cost;
     tot_price = tot_price.toFixed(2);
     $("input[name=good_mny]").val(tot_price);
     $("#od_tot_price").text(tot_price);
@@ -1122,6 +1145,7 @@ function calculate_tax()
     var tot_mny = comm_free_mny = tax_mny = vat_mny = 0;
     var send_cost = parseFloat($("input[name=od_send_cost]").val());
     var send_cost2 = parseFloat($("input[name=od_send_cost2]").val());
+    var weit_cost = parseFloat($("input[name=od_weit_cost]").val());
     var od_coupon = parseFloat($("input[name=od_coupon]").val());
     var send_coupon = parseFloat($("input[name=od_send_coupon]").val());
     var temp_point = 0;
@@ -1142,7 +1166,7 @@ function calculate_tax()
     if($("input[name=od_temp_point]").size())
         temp_point = parseFloat($("input[name=od_temp_point]").val());
 
-    tot_mny += (send_cost + send_cost2 - od_coupon - send_coupon - temp_point);
+    tot_mny += (send_cost + send_cost2 - od_coupon - send_coupon - temp_point + weit_cost);
     if(tot_mny < 0) {
         comm_free_mny = comm_free_mny + tot_mny;
         tot_mny = 0;
@@ -1236,7 +1260,7 @@ function forderform_check1(f)
     var send_cost = parseFloat(f.od_send_cost.value);
     var send_cost2 = parseFloat(f.od_send_cost2.value);
     var send_coupon = parseFloat(f.od_send_coupon.value);
-
+    var weit_cost = parseFloat(f.od_weit_cost.value);
     var max_point = 0;
     if (typeof(f.max_temp_point) != "undefined")
         max_point  = parseFloat(f.max_temp_point.value);
@@ -1444,13 +1468,14 @@ function forderform_check(f)
 
             // pg 결제 금액에서 포인트 금액 차감
             if(settle_method != "무통장") {
-                f.good_mny.value = od_price + send_cost + send_cost2 - send_coupon - temp_point;
+                
+                f.good_mny.value = od_price + send_cost + send_cost2 - send_coupon - temp_point + weit_cost;
             }
         }
     }
 
-    var tot_price = od_price + send_cost + send_cost2 - send_coupon - temp_point;
-
+    var tot_price = od_price + send_cost + send_cost2 - send_coupon - temp_point + weit_cost;
+    
     if (document.getElementById("od_settle_iche")) {
         if (document.getElementById("od_settle_iche").checked) {
             if (tot_price < 150) {

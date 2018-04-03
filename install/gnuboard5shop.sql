@@ -36,14 +36,14 @@ CREATE TABLE IF NOT EXISTS `g5_shop_cart` (
   `it_name` varchar(255) NOT NULL DEFAULT '',
   `it_sc_type` tinyint(4) NOT NULL DEFAULT '0',
   `it_sc_method` tinyint(4) NOT NULL DEFAULT '0',
-  `it_sc_price` int(11) NOT NULL DEFAULT '0',
+  
   `it_sc_minimum` int(11) NOT NULL DEFAULT '0',
   `it_sc_qty` int(11) NOT NULL DEFAULT '0',
   `ct_status` varchar(255) NOT NULL DEFAULT '',
   `ct_history` text NOT NULL,
-  `ct_price` int(11) NOT NULL DEFAULT '0',
+  `ct_price` float(11) NOT NULL DEFAULT '0',
   `ct_point` int(11) NOT NULL DEFAULT '0',
-  `cp_price` int(11) NOT NULL DEFAULT '0',
+  
   `ct_point_use` tinyint(4) NOT NULL DEFAULT '0',
   `ct_stock_use` tinyint(4) NOT NULL DEFAULT '0',
   `ct_option` varchar(255) NOT NULL DEFAULT '',
@@ -51,13 +51,20 @@ CREATE TABLE IF NOT EXISTS `g5_shop_cart` (
   `ct_notax` tinyint(4) NOT NULL DEFAULT '0',
   `io_id` varchar(255) NOT NULL DEFAULT '',
   `io_type` tinyint(4) NOT NULL DEFAULT '0',
-  `io_price` int(11) NOT NULL DEFAULT '0',
+  
   `ct_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `ct_ip` varchar(25) NOT NULL DEFAULT '',
   `ct_send_cost` tinyint(4) NOT NULL DEFAULT '0',
   `ct_direct` tinyint(4) NOT NULL DEFAULT '0',
   `ct_select` tinyint(4) NOT NULL DEFAULT '0',
   `ct_select_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `it_sc_price` float NOT NULL DEFAULT '0',
+  `cp_price` float NOT NULL DEFAULT '0',
+  `io_price` float NOT NULL DEFAULT '0',
+  `it_weit` int(11) NOT NULL DEFAULT '0',
+  `de_weit_g` int(11) NOT NULL DEFAULT '0',
+  `de_weit_cost` float NOT NULL DEFAULT '0',
+  `de_weit_cost_add` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`ct_id`),
   KEY `od_id` (`od_id`),
   KEY `it_id` (`it_id`),
@@ -382,7 +389,14 @@ CREATE TABLE IF NOT EXISTS `g5_shop_default` (
   `de_member_reg_coupon_use` tinyint(4) NOT NULL DEFAULT '0',
   `de_member_reg_coupon_term` int(11) NOT NULL DEFAULT '0',
   `de_member_reg_coupon_price` int(11) NOT NULL DEFAULT '0',
-  `de_member_reg_coupon_minimum` int(11) NOT NULL DEFAULT '0'
+  `de_member_reg_coupon_minimum` int(11) NOT NULL DEFAULT '0',
+  `de_paypal_client_api_id` varchar(255) NOT NULL,
+  `de_paypal_client_api_pw` varchar(255) NOT NULL,
+  `de_paypal_client_api_signature` varchar(255) NOT NULL,
+  `de_weit_g` int(11) NOT NULL DEFAULT '0',
+  `de_weit_cost` float NOT NULL DEFAULT '0',
+  `de_weit_cost_add` float NOT NULL DEFAULT '0'
+
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -456,11 +470,11 @@ CREATE TABLE IF NOT EXISTS `g5_shop_item` (
   `it_explan` mediumtext NOT NULL,
   `it_explan2` mediumtext NOT NULL,
   `it_mobile_explan` mediumtext NOT NULL,
-  `it_cust_price` int(11) NOT NULL DEFAULT '0',
-  `it_price` int(11) NOT NULL DEFAULT '0',
-  `it_point` int(11) NOT NULL DEFAULT '0',
+  
+  
+  
   `it_point_type` tinyint(4) NOT NULL DEFAULT '0',
-  `it_supply_point` int(11) NOT NULL DEFAULT '0',
+  
   `it_notax` tinyint(4) NOT NULL DEFAULT '0',
   `it_sell_email` varchar(255) NOT NULL DEFAULT '',
   `it_use` tinyint(4) NOT NULL DEFAULT '0',
@@ -471,8 +485,8 @@ CREATE TABLE IF NOT EXISTS `g5_shop_item` (
   `it_noti_qty` int(11) NOT NULL DEFAULT '0',
   `it_sc_type` tinyint(4) NOT NULL DEFAULT '0',
   `it_sc_method` tinyint(4) NOT NULL DEFAULT '0',
-  `it_sc_price` int(11) NOT NULL DEFAULT '0',
-  `it_sc_minimum` int(11) NOT NULL DEFAULT '0',
+  
+  
   `it_sc_qty` int(11) NOT NULL DEFAULT '0',
   `it_buy_min_qty` int(11) NOT NULL DEFAULT '0',
   `it_buy_max_qty` int(11) NOT NULL DEFAULT '0',
@@ -523,6 +537,15 @@ CREATE TABLE IF NOT EXISTS `g5_shop_item` (
   `it_8` varchar(255) NOT NULL DEFAULT '',
   `it_9` varchar(255) NOT NULL DEFAULT '',
   `it_10` varchar(255) NOT NULL DEFAULT '',
+
+  `it_cust_price` float NOT NULL DEFAULT '0',
+  `it_price` float NOT NULL DEFAULT '0',
+  `it_point` float NOT NULL DEFAULT '0',
+  `it_supply_point` float NOT NULL DEFAULT '0',
+ 
+  `it_sc_price` float NOT NULL DEFAULT '0',
+  `it_sc_minimum` float NOT NULL DEFAULT '0',
+  `it_weit` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`it_id`),
   KEY `ca_id` (`ca_id`),
   KEY `it_name` (`it_name`),
@@ -541,10 +564,11 @@ CREATE TABLE IF NOT EXISTS `g5_shop_item_option` (
   `io_id` VARCHAR(255) NOT NULL DEFAULT '0',
   `io_type` TINYINT(4) NOT NULL DEFAULT '0',                    
   `it_id` VARCHAR(20) NOT NULL DEFAULT '',
-  `io_price` INT(11) NOT NULL DEFAULT '0',
+  
   `io_stock_qty` INT(11) NOT NULL DEFAULT '0',
   `io_noti_qty` INT(11) NOT NULL DEFAULT '0',
   `io_use` TINYINT(4) NOT NULL DEFAULT '0',
+  `io_price` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`io_no`),
   KEY `io_id` (`io_id`),
   KEY `it_id` (`it_id`)
@@ -643,19 +667,17 @@ CREATE TABLE IF NOT EXISTS `g5_shop_order` (
   `od_b_addr_jibeon` varchar(255) NOT NULL DEFAULT '',
   `od_memo` text NOT NULL,
   `od_cart_count` int(11) NOT NULL DEFAULT '0',
-  `od_cart_price` int(11) NOT NULL DEFAULT '0',
+  
   `od_cart_coupon` int(11) NOT NULL DEFAULT '0',
-  `od_send_cost` int(11) NOT NULL DEFAULT '0',
-  `od_send_cost2` int(11) NOT NULL DEFAULT '0',
   `od_send_coupon` int(11) NOT NULL DEFAULT '0',  
-  `od_receipt_price` int(11) NOT NULL DEFAULT '0',
-  `od_cancel_price` int(11) NOT NULL DEFAULT '0',
+ 
+ 
   `od_receipt_point` int(11) NOT NULL DEFAULT '0',
-  `od_refund_price` int(11) NOT NULL DEFAULT '0',
+ 
   `od_bank_account` varchar(255) NOT NULL DEFAULT '',
   `od_receipt_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `od_coupon` int(11) NOT NULL DEFAULT '0',
-  `od_misu` int(11) NOT NULL DEFAULT '0',
+ 
   `od_shop_memo` text NOT NULL,
   `od_mod_history` text NOT NULL,
   `od_status` varchar(255) NOT NULL DEFAULT '',  
@@ -681,6 +703,22 @@ CREATE TABLE IF NOT EXISTS `g5_shop_order` (
   `od_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',  
   `od_pwd` varchar(255) NOT NULL DEFAULT '',
   `od_ip` varchar(25) NOT NULL DEFAULT '',
+
+  
+  `od_cart_price` float NOT NULL DEFAULT '0',
+  
+  `od_send_cost` float NOT NULL DEFAULT '0',
+  `od_send_cost2` float NOT NULL DEFAULT '0',
+  
+  `od_receipt_price` float NOT NULL DEFAULT '0',
+  `od_cancel_price` float NOT NULL DEFAULT '0',
+    `od_refund_price` float NOT NULL DEFAULT '0',
+  `od_misu` float NOT NULL DEFAULT '0',
+   `od_weit` int(11) NOT NULL DEFAULT '0',
+  `od_weit_cost` float NOT NULL DEFAULT '0',
+  `de_weit_g` float NOT NULL DEFAULT '0',
+  `de_weit_cost` float NOT NULL DEFAULT '0',
+  `de_weit_cost_add` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`od_id`),
   KEY `index2` (`mb_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

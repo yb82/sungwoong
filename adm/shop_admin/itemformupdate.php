@@ -278,6 +278,7 @@ $sql_common = " ca_id               = '$ca_id',
                 it_maker            = '$it_maker',
                 it_origin           = '$it_origin',
                 it_brand            = '$it_brand',
+                it_weit             = '$it_weit',
                 it_model            = '$it_model',
                 it_option_subject   = '$it_option_subject',
                 it_supply_subject   = '$it_supply_subject',
@@ -473,6 +474,7 @@ if(is_checked('chk_ca_it_type'))                $ca_fields .= " , it_type1 = '$i
 if(is_checked('chk_ca_it_maker'))               $ca_fields .= " , it_maker = '$it_maker' ";
 if(is_checked('chk_ca_it_origin'))              $ca_fields .= " , it_origin = '$it_origin' ";
 if(is_checked('chk_ca_it_brand'))               $ca_fields .= " , it_brand = '$it_brand' ";
+cif(is_checked('chk_ca_it_weit'))               $ca_fields .= " , it_weit = '$it_weit' ";
 if(is_checked('chk_ca_it_model'))               $ca_fields .= " , it_model = '$it_model' ";
 if(is_checked('chk_ca_it_notax'))               $ca_fields .= " , it_notax = '$it_notax' ";
 if(is_checked('chk_ca_it_sell_email'))          $ca_fields .= " , it_sell_email = '$it_sell_email' ";
@@ -536,6 +538,7 @@ if(is_checked('chk_all_it_soldout'))             $all_fields .= " , it_soldout =
 if(is_checked('chk_all_it_info'))                $all_fields .= " , it_info_gubun = '$it_info_gubun', it_info_value = '$it_info_value' ";
 if(is_checked('chk_all_it_price'))               $all_fields .= " , it_price = '$it_price' ";
 if(is_checked('chk_all_it_cust_price'))          $all_fields .= " , it_cust_price = '$it_cust_price' ";
+if(is_checked('chk_all_it_weit'))                $all_fields .= " , it_weit = '$it_weit' ";
 if(is_checked('chk_all_it_point'))               $all_fields .= " , it_point = '$it_point' ";
 if(is_checked('chk_all_it_point_type'))          $all_fields .= " , it_point_type = '$it_point_type' ";
 if(is_checked('chk_all_it_supply_point'))        $all_fields .= " , it_supply_point = '$it_supply_point' ";
