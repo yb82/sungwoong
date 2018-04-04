@@ -474,7 +474,7 @@ if(is_checked('chk_ca_it_type'))                $ca_fields .= " , it_type1 = '$i
 if(is_checked('chk_ca_it_maker'))               $ca_fields .= " , it_maker = '$it_maker' ";
 if(is_checked('chk_ca_it_origin'))              $ca_fields .= " , it_origin = '$it_origin' ";
 if(is_checked('chk_ca_it_brand'))               $ca_fields .= " , it_brand = '$it_brand' ";
-cif(is_checked('chk_ca_it_weit'))               $ca_fields .= " , it_weit = '$it_weit' ";
+if(is_checked('chk_ca_it_weit'))               $ca_fields .= " , it_weit = '$it_weit' ";
 if(is_checked('chk_ca_it_model'))               $ca_fields .= " , it_model = '$it_model' ";
 if(is_checked('chk_ca_it_notax'))               $ca_fields .= " , it_notax = '$it_notax' ";
 if(is_checked('chk_ca_it_sell_email'))          $ca_fields .= " , it_sell_email = '$it_sell_email' ";

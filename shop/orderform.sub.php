@@ -48,6 +48,7 @@ if($is_kakaopay_use) {
         $goods_count = -1;
 
         // $s_cart_id 로 현재 장바구니 자료 쿼리
+        //echo $s_cart_id;
         $sql = " select a.ct_id,
                         a.it_id,
                         a.it_name,
@@ -73,7 +74,7 @@ if($is_kakaopay_use) {
         $sql .= " group by a.it_id ";
         $sql .= " order by a.ct_id ";
         $result = sql_query($sql);
-
+       
         $good_info = '';
         $it_send_cost = 0;
         $it_cp_count = 0;
@@ -87,8 +88,10 @@ if($is_kakaopay_use) {
 
         for ($i=0; $row=sql_fetch_array($result); $i++)
         {
+            
             // 합계금액 계산
             $chk_weit = chk_weit_default($row['it_name'], $row['de_weit_g'], $row['de_weit_cost'], $row['de_weit_cost_add']);
+
             $sql = " select SUM(IF(io_type = 1, (io_price * ct_qty), ((ct_price + io_price) * ct_qty))) as price,
                             SUM(ct_point * ct_qty) as point,
                             SUM(ct_qty) as qty
@@ -255,7 +258,7 @@ if($is_kakaopay_use) {
         <dt class="sod_bsk_dvr">배송비</dt>
         <dd class="sod_bsk_dvr">A $<strong><?php echo number_format($send_cost,2); ?> </strong></dd>
         <dt class="sod_bsk_dvr">무게배송비</dt>
-        <dd class="sod_bsk_dvr"><strong><?php echo get_weit($tot_weit); ?> / <?php echo number_format($tot_weit_cost); ?> 원</strong></dd>
+        <dd class="sod_bsk_dvr"><strong><?php echo get_weit($tot_weit); ?> / <?php echo "A $".number_format($tot_weit_cost,2); ?> </strong></dd>
         
         <dt class="sod_bsk_cnt">총계</dt>
         <dd class="sod_bsk_cnt">

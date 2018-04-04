@@ -186,7 +186,7 @@ include_once('./_head.php');
         <?php } ?>
         <?php if ($tot_weit_cost > 0) { // 무게배송비가 0 보다 크다면 (있다면) ?>
         <dt class="sod_bsk_dvr">무게배송비</dt>
-        <dd class="sod_bsk_dvr"><strong><?php echo get_weit($tot_weit); ?> / <?php echo number_format($tot_weit_cost); ?> 원</strong></dd>
+        <dd class="sod_bsk_dvr"><strong><?php echo get_weit($tot_weit); ?> / <?php echo "A $".number_format($tot_weit_cost,2); ?> </strong></dd>
         <?php } ?>
 
         <?php
