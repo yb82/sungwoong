@@ -61,7 +61,7 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
     </script>
 
     <ul id="hd_mb">
-        <li><a href="<?php echo G5_SHOP_URL; ?>/couponzone.php">쿠폰존</a></li>
+        
         <li><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=3">최신</a></li>
         <li><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=4">인기</a></li>
         <li><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=1">히트</a></li>
