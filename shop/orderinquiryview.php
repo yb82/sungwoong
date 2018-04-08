@@ -665,8 +665,8 @@ if($od['od_pg'] == 'lg') {
             </li>
         </ul>
     </section>
-
-    <section id="sod_fin_cancel">
+ <button type="button" onclick="location.href = './index.php';">메인화면으로 돌아가기</button>
+    <!-- <section id="sod_fin_cancel">
         <h2>주문취소</h2>
         <?php
         // 취소한 내역이 없다면
@@ -692,7 +692,7 @@ if($od['od_pg'] == 'lg') {
         ?>
         <p>주문 취소, 반품, 품절된 내역이 있습니다.</p>
         <?php } ?>
-    </section>
+    </section> -->
 
     <?php if ($od['od_settle_case'] == '가상계좌' && $od['od_misu'] > 0 && $default['de_card_test'] && $is_admin && $od['od_pg'] == 'kcp') {
     preg_match("/\s{1}([^\s]+)\s?/", $od['od_bank_account'], $matchs);
@@ -737,7 +737,15 @@ if($od['od_pg'] == 'lg') {
 <!-- } 주문상세내역 끝 -->
 
 <script>
+    window.onload = function(){
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+            history.go(1);
+        };
+
+}
 $(function() {
+
     $("#sod_sts_explan_open").on("click", function() {
         var $explan = $("#sod_sts_explan");
         if($explan.is(":animated"))

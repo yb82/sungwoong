@@ -58,7 +58,7 @@ $i_price     = (float)$_POST['od_price'];
 $i_send_cost  = (float)$_POST['od_send_cost'];
 $i_send_cost2  = (float)$_POST['od_send_cost2'];
 $i_send_coupon  = (float)$_POST['od_send_coupon'];
-$i_weit_cost  = (int)$_POST['od_weit_cost'];
+$i_weit_cost  = (float)$_POST['od_weit_cost'];
 $i_temp_point = (int)$_POST['od_temp_point'];
 
 // 주문금액이 상이함
@@ -273,8 +273,11 @@ if ($od_temp_point)
 // 무게배송비가 상이함
 if ($_POST['od_weit'] > 0) {
     $weit_cost = get_weit_cost_cart($tmp_cart_id);
-
-    if ((int)$weit_cost !== (int)$i_weit_cost) {
+    $weit_c = number_format($weit_cost,2);
+    $i_weit_c =  number_format($i_weit_cost,2);
+    
+    if ($weit_c !== $i_weit_c) {
+        
         die("무게배송비 오류");
     }
 }

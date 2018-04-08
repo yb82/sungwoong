@@ -1433,7 +1433,7 @@ function sql_connect($host, $user, $pass, $db=G5_MYSQL_DB)
 
     if(function_exists('mysqli_connect') && G5_MYSQLI_USE) {
         $link = mysqli_connect($host, $user, $pass, $db);
-
+//dbport
         // 연결 오류 발생 시 스크립트 종료
         if (mysqli_connect_errno()) {
             die('Connect Error: '.mysqli_connect_error());
