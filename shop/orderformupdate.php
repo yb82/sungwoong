@@ -273,8 +273,11 @@ if ($od_temp_point)
 // 무게배송비가 상이함
 if ($_POST['od_weit'] > 0) {
     $weit_cost = get_weit_cost_cart($tmp_cart_id);
-
-    if ((int)$weit_cost !== (int)$i_weit_cost) {
+    $weit_c = number_format($weit_cost,2);
+    $i_weit_c =  number_format($i_weit_cost,2);
+    
+    if ($weit_c !== $i_weit_c) {
+        
         die("무게배송비 오류");
     }
 }

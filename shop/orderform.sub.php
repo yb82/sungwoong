@@ -1747,6 +1747,7 @@ $(function(){
 </script>
 <script type="text/javascript">
         window.onload = function(){
+      
         
           
         var CREATE_PAYMENT_URL  = g5_url+"/shop/paypal.php";
@@ -1788,9 +1789,8 @@ $(function(){
         /* Optional: show a 'Pay Now' button in the checkout flow rather than Continue */
         commit: true,
         onAuthorize: function(data, actions) {
-                              document.getElementById("payer").value = data.payerID;
-          
-         jQuery.post(EXECUTE_PAYMENT_URL, { token: data.paymentToken, PayerID: data.payerID}, function(response) {
+            document.getElementById("payer").value = data.payerID;                   
+        jQuery.post(EXECUTE_PAYMENT_URL, { token: data.paymentToken, PayerID: data.payerID}, function(response) {
             var aa = jQuery.parseJSON(response);
 
             
@@ -1805,6 +1805,7 @@ $(function(){
             }
           
           });
+          
         },
 
         onCancel: function(data, actions) {
