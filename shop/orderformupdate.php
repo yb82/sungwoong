@@ -58,7 +58,7 @@ $i_price     = (float)$_POST['od_price'];
 $i_send_cost  = (float)$_POST['od_send_cost'];
 $i_send_cost2  = (float)$_POST['od_send_cost2'];
 $i_send_coupon  = (float)$_POST['od_send_coupon'];
-$i_weit_cost  = (int)$_POST['od_weit_cost'];
+$i_weit_cost  = (float)$_POST['od_weit_cost'];
 $i_temp_point = (int)$_POST['od_temp_point'];
 
 // 주문금액이 상이함
@@ -71,7 +71,7 @@ $cart_count = $row['cart_count'];
 $tot_od_price = number_format($tot_ct_price,2);
 
 // 쿠폰금액계산
-$tot_cp_price = 0;
+$tot_cp_price = 0; 
 if($is_member) {
     // 상품쿠폰
     $tot_it_cp_price = $tot_od_cp_price = 0;
