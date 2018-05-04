@@ -9,6 +9,7 @@ if (G5_IS_MOBILE) {
 define("_INDEX_", TRUE);
 
 include_once(G5_THEME_SHOP_PATH.'/shop.head.php');
+include_once(G5_LIB_PATH.'/latest.lib.php');
 ?>
 <div id="gnb_bnner">
     <?php include_once(G5_SHOP_SKIN_PATH.'/boxcategory.skin.php'); // 상품분류 ?>
@@ -118,8 +119,15 @@ $(function() {
     ?>
 </section>
 
+
 <!-- } 최신상품 끝 -->
 <?php } ?>
+<section id="sidx_lat">
+    <h2>커뮤니티 최신글</h2>
+    <?php echo latest('theme/shop_basic', 'notice', 5, 30); ?>
+    <?php echo latest('theme/shop_basic', 'free', 5, 25); ?>
+    <?php echo latest('theme/shop_basic', 'qa', 5, 20); ?>
+</section>
 
 <?php
 include_once(G5_THEME_SHOP_PATH.'/shop.tail.php');
