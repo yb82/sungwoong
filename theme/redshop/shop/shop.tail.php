@@ -28,9 +28,10 @@ if (G5_IS_MOBILE) {
     </ul>
 
     <div class="ft-cs">
-        <h2>고객센터</h2><span class="st_bg_2"></span>
+       <!--  <h2>고객센터</h2><span class="st_bg_2"></span>
         <strong><?php echo get_text($footerinfo['tel']); ?></strong>
-        <p><?php echo get_text($footerinfo['etc'], 1); ?></p>
+        <p><?php echo get_text($footerinfo['etc'], 1); ?></p> -->
+        <img src = "img/contact.gif">
     </div>
 
     <!-- <div class="ft-bank">

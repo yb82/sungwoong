@@ -19,12 +19,12 @@ if(!$tel)
 if(!$etc)
     alert('기타정보를 입력해 주십시오.');
 
-if(!$depositor)
+/*if(!$depositor)
     alert('예금주를 입력해 주십시오.');
 
 if(!$account)
     alert('계좌번호를 입력해 주십시오.');
-
+*/
 $data = array('tel' => $tel, 'etc' => $etc, 'depositor' => $depositor, 'account' => $account);
 
 $save_file = G5_DATA_PATH.'/cache/theme/redshop/footerinfo.php';

@@ -17,4 +17,29 @@ $maincategory=array (
     'file' => NULL,
     'link' => '',
   ),
+  40 => 
+  array (
+    'file' => NULL,
+    'link' => '',
+  ),
+  50 => 
+  array (
+    'file' => NULL,
+    'link' => '',
+  ),
+  60 => 
+  array (
+    'file' => NULL,
+    'link' => '',
+  ),
+  70 => 
+  array (
+    'file' => NULL,
+    'link' => '',
+  ),
+  80 => 
+  array (
+    'file' => NULL,
+    'link' => '',
+  ),
 );

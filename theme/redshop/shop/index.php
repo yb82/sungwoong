@@ -16,6 +16,8 @@ include_once(G5_THEME_SHOP_PATH.'/shop.head.php');
     <?php echo display_banner('메인', 'mainbanner.10.skin.php'); ?>
     <!-- } 메인이미지 끝 -->
 </div>
+
+
 <?php include_once(G5_SHOP_SKIN_PATH.'/boxevent.skin.php'); // 이벤트 ?>
 
 <?php
@@ -115,6 +117,7 @@ $(function() {
     echo $list->run();
     ?>
 </section>
+
 <!-- } 최신상품 끝 -->
 <?php } ?>
 

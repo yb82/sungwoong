@@ -43,6 +43,7 @@ include_once(G5_THEME_PATH.'/head.sub.php');
             <li><a href="<?php echo G5_BBS_URL; ?>/login.php?url=<?php echo $urlencode; ?>"><b>로그인</b></a></li>
             <?php } ?>
             <li><a href="<?php echo G5_SHOP_URL; ?>/mypage.php">마이페이지</a></li>
+            <li><a href="<?php echo G5_SHOP_URL; ?>/cart.php">장바구니</a></li>
             <li><a href="<?php echo G5_BBS_URL; ?>/faq.php">FAQ</a></li>
             <li><a href="<?php echo G5_BBS_URL; ?>/qalist.php">1:1문의</a></li>
             <li><a href="<?php echo G5_SHOP_URL; ?>/personalpay.php">개인결제</a></li>
@@ -135,11 +136,13 @@ include_once(G5_THEME_PATH.'/head.sub.php');
         </script>
         <?php
         }
-        ?>
-        <div id="hd_cart">
+        ?><iframe src="https://spot.wooribank.com/pot/Dream?withyou=FXCNT0006&rc=0&divType=3&lang=KOR&nat_code=AUD" frameBorder=0
+width=170 scrolling=no height=184 topmargin="0" name=irate marginWidth=0 marginHeight=0 title="무료환율표A형" style="position:absolute;top: 1px;left: 800px"></iframe>           
+            
+        <!-- <div id="hd_cart">
             <a href="<?php echo G5_SHOP_URL; ?>/mypage.php"><i class="fa fa-user" aria-hidden="true"></i><span class="sound_only">마이페이지</span></a>
             <a href="<?php echo G5_SHOP_URL; ?>/cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="sound_only">장바구니</span><span class="cart-count"><?php echo get_cart_count($tmp_cart_id); ?></span></a>
-        </div>
+        </div> -->
 
     </div>
     <div id="menu">

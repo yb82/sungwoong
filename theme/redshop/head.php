@@ -38,7 +38,8 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
             <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/logo.jpg" alt="<?php echo $config['cf_title']; ?>"></a>
         </div>
 
-        <fieldset id="hd_sch">
+        <fieldset id="hd_sch" style=" position: absolute;   top: 50px;
+    left: 290px;">
             <legend>사이트 내 전체검색</legend>
             <form name="fsearchbox" method="get" action="<?php echo G5_BBS_URL ?>/search.php" onsubmit="return fsearchbox_submit(this);">
             <input type="hidden" name="sfl" value="wr_subject||wr_content">
