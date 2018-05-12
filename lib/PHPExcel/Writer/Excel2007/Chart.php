@@ -207,7 +207,7 @@ class PHPExcel_Writer_Excel2007_Chart extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Write Chart Plot Area
      *
-     * @param  PHPExcel_Chart_PlotArea $plotArea
+     * @param  PHPExcel_Chart_PlotArea $ plotArea
      * @param  PHPExcel_Chart_Title $xAxisLabel
      * @param  PHPExcel_Chart_Title $yAxisLabel
      * @param  PHPExcel_Chart_Axis $xAxis
@@ -398,7 +398,7 @@ class PHPExcel_Writer_Excel2007_Chart extends PHPExcel_Writer_Excel2007_WriterPa
      * Write Category Axis
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
-     * @param  PHPExcel_Chart_PlotArea $plotArea
+     * @param  PHPExcel_Chart_PlotArea $ plotArea
      * @param  PHPExcel_Chart_Title $xAxisLabel
      * @param  string $groupType Chart type
      * @param  string $id1
@@ -520,7 +520,7 @@ class PHPExcel_Writer_Excel2007_Chart extends PHPExcel_Writer_Excel2007_WriterPa
      * Write Value Axis
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
-     * @param  PHPExcel_Chart_PlotArea $plotArea
+     * @param  PHPExcel_Chart_PlotArea $ plotArea
      * @param  PHPExcel_Chart_Title $yAxisLabel
      * @param  string $groupType Chart type
      * @param  string $id1
@@ -1007,7 +1007,7 @@ class PHPExcel_Writer_Excel2007_Chart extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Get the data series type(s) for a chart plot series
      *
-     * @param  PHPExcel_Chart_PlotArea $plotArea
+     * @param  PHPExcel_Chart_PlotArea $ plotArea
      *
      * @return  string|array
      * @throws  PHPExcel_Writer_Exception

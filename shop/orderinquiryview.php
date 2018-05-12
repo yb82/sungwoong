@@ -162,8 +162,8 @@ if($od['od_pg'] == 'lg') {
             <tr>
                 <td headers="th_itopt"><?php echo get_text($opt['ct_option']); ?></td>
                 <td headers="th_itqty" class="td_mngsmall"><?php echo number_format($opt['ct_qty']); ?></td>
-                <td headers="th_itprice" class="td_numbig">A $<?php echo number_format($opt_price,2); ?></td>
-                <td headers="th_itsum" class="td_numbig">A $<?php echo number_format($sell_price,2); ?></td>
+                <td headers="th_itprice" class="td_numbig">AUD <?php echo number_format($opt_price,2); ?></td>
+                <td headers="th_itsum" class="td_numbig">AUD <?php echo number_format($sell_price,2); ?></td>
                 <td headers="th_itpt" class="td_num"><?php echo number_format($point); ?></td>
                 <td headers="th_itpt" class="td_dvr"><?php echo get_weit($row['it_weit']); ?></td>
                 <td headers="th_itst" class="td_mngsmall"><?php echo $opt['ct_status']; ?></td>
@@ -214,21 +214,21 @@ if($od['od_pg'] == 'lg') {
 
         <dl id="sod_bsk_tot">
             <dt class="sod_bsk_dvr">주문총액</dt>
-            <dd class="sod_bsk_dvr"><strong>A $<?php echo number_format($od['od_cart_price'],2); ?></strong></dd>
+            <dd class="sod_bsk_dvr"><strong>AUD <?php echo number_format($od['od_cart_price'],2); ?></strong></dd>
 
             <?php if($od['od_cart_coupon'] > 0) { ?>
             <dt class="sod_bsk_dvr">개별상품 쿠폰할인</dt>
-            <dd class="sod_bsk_dvr"><strong>A $<?php echo number_format($od['od_cart_coupon']); ?> </strong></dd>
+            <dd class="sod_bsk_dvr"><strong>AUD <?php echo number_format($od['od_cart_coupon']); ?> </strong></dd>
             <?php } ?>
 
             <?php if($od['od_coupon'] > 0) { ?>
             <dt class="sod_bsk_dvr">주문금액 쿠폰할인</dt>
-            <dd class="sod_bsk_dvr"><strong>A $<?php echo number_format($od['od_coupon']); ?> </strong></dd>
+            <dd class="sod_bsk_dvr"><strong>AUD <?php echo number_format($od['od_coupon']); ?> </strong></dd>
             <?php } ?>
 
             <?php if ($od['od_send_cost'] > 0) { ?>
             <dt class="sod_bsk_dvr">배송비</dt>
-            <dd class="sod_bsk_dvr"><strong>A $<?php echo number_format($od['od_send_cost'],2); ?></strong></dd>
+            <dd class="sod_bsk_dvr"><strong>AUD <?php echo number_format($od['od_send_cost'],2); ?></strong></dd>
             <?php } ?>
 
             <?php if($od['od_send_coupon'] > 0) { ?>
@@ -238,12 +238,12 @@ if($od['od_pg'] == 'lg') {
 
             <?php if ($od['od_send_cost2'] > 0) { ?>
             <dt class="sod_bsk_dvr">추가배송비</dt>
-            <dd class="sod_bsk_dvr"><strong>A $<?php echo number_format($od['od_send_cost2'],2); ?></strong></dd>
+            <dd class="sod_bsk_dvr"><strong>AUD <?php echo number_format($od['od_send_cost2'],2); ?></strong></dd>
             <?php } ?>
 
             <?php if ($od['od_cancel_price'] > 0) { ?>
             <dt class="sod_bsk_dvr">취소금액</dt>
-            <dd class="sod_bsk_dvr"><strong>A $<?php echo number_format($od['od_cancel_price'],2); ?></strong></dd>
+            <dd class="sod_bsk_dvr"><strong>AUD <?php echo number_format($od['od_cancel_price'],2); ?></strong></dd>
             <?php } ?>
              <?php if ($od['od_weit_cost'] > 0) { ?>
             <dt class="sod_bsk_dvr">무게배송비</dt>
@@ -251,7 +251,7 @@ if($od['od_pg'] == 'lg') {
             <?php } ?>
 
             <dt class="sod_bsk_cnt">총계</dt>
-            <dd class="sod_bsk_cnt"><strong>A $<?php echo number_format($tot_price,2); ?></strong></dd>
+            <dd class="sod_bsk_cnt"><strong>AUD <?php echo number_format($tot_price,2); ?></strong></dd>
 
             <dt class="sod_bsk_point">포인트</dt>
             <dd class="sod_bsk_point"><strong><?php echo number_format($tot_point); ?> 점</strong></dd>

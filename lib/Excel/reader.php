@@ -855,7 +855,7 @@ class Spreadsheet_Excel_Reader
                     $column = ord($this->data[$spos+2]) | ord($this->data[$spos+3])<<8;
                     if ((ord($this->data[$spos+6])==0) && (ord($this->data[$spos+12])==255) && (ord($this->data[$spos+13])==255)) {
                         //String formula. Result follows in a STRING record
-                        //echo "FORMULA $row $column Formula with a string<br>\n";
+                        //echo "FORMULAUD row $column Formula with a string<br>\n";
                     } elseif ((ord($this->data[$spos+6])==1) && (ord($this->data[$spos+12])==255) && (ord($this->data[$spos+13])==255)) {
                         //Boolean formula. Result is in +2; 0=false,1=true
                     } elseif ((ord($this->data[$spos+6])==2) && (ord($this->data[$spos+12])==255) && (ord($this->data[$spos+13])==255)) {

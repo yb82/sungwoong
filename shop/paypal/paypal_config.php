@@ -20,8 +20,8 @@ define("RETURN_URL_MARK",'http://'.$_SERVER['HTTP_HOST'].preg_replace('/paypal_e
 //define("RETURN_URL",G5_SHOP_PATH."/orderformupdate.php");
 //define("CANCEL_URL",G5_SHOP_PATH.'/orderform.php');
 
-define("RETURN_URL",'http://'.$_SERVER['HTTP_HOST'].'/sungwoong1/shop/paypal/return.php');
-define("CANCEL_URL",'http://'.$_SERVER['HTTP_HOST'].'/sungwoong1/shop/index.php');
+define("RETURN_URL",'http://'.$_SERVER['HTTP_HOST'].'/sungwoong/shop/paypal/return.php');
+define("CANCEL_URL",'http://'.$_SERVER['HTTP_HOST'].'/sungwoong/shop/index.php');
 
 //Whether Sandbox environment is being used, Keep it true for testing
 define("SANDBOX_FLAG", true);

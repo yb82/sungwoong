@@ -209,9 +209,9 @@ if($is_kakaopay_use) {
                 <?php echo $it_name; ?>
             </td>
             <td class="td_num"><?php echo number_format($sum['qty']); ?></td>
-            <td class="td_numbig">A $<?php echo number_format($row['ct_price'],2); ?></td>
+            <td class="td_numbig">AUD <?php echo number_format($row['ct_price'],2); ?></td>
             <td class="td_mngsmall"><?php echo $cp_button; ?></td>
-            <td class="td_numbig">A $<span class="total_price"><?php echo number_format($sell_price,2); ?></span></td>
+            <td class="td_numbig">AUD <span class="total_price"><?php echo number_format($sell_price,2); ?></span></td>
             <td class="td_numbig"><?php echo number_format($point); ?></td>
             <td class="td_dvr"><?php echo $ct_send_cost; ?></td>
         </tr>
@@ -250,15 +250,15 @@ if($is_kakaopay_use) {
     ?>
     <dl id="sod_bsk_tot">
         <dt class="sod_bsk_sell">주문</dt>
-        <dd class="sod_bsk_sell"><strong>A $<?php echo number_format($tot_sell_price,2); ?> </strong></dd>
+        <dd class="sod_bsk_sell"><strong>AUD <?php echo number_format($tot_sell_price,2); ?> </strong></dd>
         <?php if($it_cp_count > 0) { ?>
         <dt class="sod_bsk_coupon">쿠폰할인</dt>
         <dd class="sod_bsk_coupon">$<strong id="ct_tot_coupon">$ 0 </strong></dd>
         <?php } ?>
         <dt class="sod_bsk_dvr">배송비</dt>
-        <dd class="sod_bsk_dvr">A $<strong><?php echo number_format($send_cost,2); ?> </strong></dd>
+        <dd class="sod_bsk_dvr">AUD <strong><?php echo number_format($send_cost,2); ?> </strong></dd>
         <dt class="sod_bsk_dvr">무게배송비</dt>
-        <dd class="sod_bsk_dvr"><strong><?php echo get_weit($tot_weit); ?> / <?php echo "A $".number_format($tot_weit_cost,2); ?> </strong></dd>
+        <dd class="sod_bsk_dvr"><strong><?php echo get_weit($tot_weit); ?> / <?php echo "AUD ".number_format($tot_weit_cost,2); ?> </strong></dd>
         
         <dt class="sod_bsk_cnt">총계</dt>
         <dd class="sod_bsk_cnt">
@@ -531,7 +531,7 @@ if($is_kakaopay_use) {
             </tr>
             <tr>
                 <th scope="row">주문할인금액</th>
-                <td>A $<span id="od_cp_price">0</span></td>
+                <td>AUD <span id="od_cp_price">0</span></td>
             </tr>
             <?php } ?>
             <?php if($sc_cnt > 0) { ?>
@@ -544,12 +544,12 @@ if($is_kakaopay_use) {
             </tr>
             <tr>
                 <th scope="row">배송비할인금액</th>
-                <td>A $<span id="sc_cp_price">0</span></td>
+                <td>AUD <span id="sc_cp_price">0</span></td>
             </tr>
             <?php } ?>
             <tr>
                 <th>총 주문금액</th>
-                <td>A $<span id="od_tot_price"><?php echo number_format($tot_price,2); ?></span></td>
+                <td>AUD <span id="od_tot_price"><?php echo number_format($tot_price,2); ?></span></td>
             </tr>
             <tr>
                 <th>추가배송비</th>
@@ -1056,8 +1056,8 @@ function calculate_total_price()
 
     tot_sell_price = sell_price - tot_cp_price + send_cost + weit_cost;
 
-    $("#ct_tot_coupon").text("A $"+number_format(String(tot_cp_price,2)));
-    $("#ct_tot_price").text("A $"+number_format(String(tot_sell_price),2));
+    $("#ct_tot_coupon").text("AUD "+number_format(String(tot_cp_price,2)));
+    $("#ct_tot_price").text("AUD "+number_format(String(tot_sell_price),2));
 
     $("input[name=good_mny]").val(tot_sell_price);
     $("input[name=od_price]").val(sell_price - tot_cp_price);
@@ -1753,6 +1753,7 @@ $(function(){
         var CREATE_PAYMENT_URL  = g5_url+"/shop/paypal.php";
         var CANCEL_PAYMENT_URL = g5_url+"/shop/index.php";
 
+
         var EXECUTE_PAYMENT_URL  = g5_url+'/shop/paypal.php';
 
         var formchecker = false; 
@@ -1771,19 +1772,20 @@ $(function(){
 
                 payment: function(resolve) {
             // todo :form checker.
-             // if(forderform_check1(this.form)){
+                //if(forderform_check1(this.form)){
                   formchecker = true;
                   $('#paymentMethods').hide();
                   $('#display_pay_process').show();
                    var formdata = {PAYMENTREQUEST_0_AMT:  <?php  echo number_format($tot_price,2); ?> , paymentType:'SALE', PAYMENTREQUEST_0_CURRENCYCODE: 'AUD', currencyCodeType:'AUD', ADDROVERRIDE: 1};
                     jQuery.post(CREATE_PAYMENT_URL,formdata,function(data) {
 
-                  resolve(data); // no
+                        resolve(data); // no
 
-               // } else return false;
+                    });
+               // }else return false;
              
 
-            });
+            
 
         },
         /* Optional: show a 'Pay Now' button in the checkout flow rather than Continue */

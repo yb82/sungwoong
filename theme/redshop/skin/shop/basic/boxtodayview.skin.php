@@ -103,6 +103,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
         </div>
 
         <button type="button" id="top_btn">맨위로</button>
+        <img src="<?php echo G5_IMG_URL?>/customs.jpg" alt="개인통관부호" style="width: 67px">
 
     </div>
 </aside>

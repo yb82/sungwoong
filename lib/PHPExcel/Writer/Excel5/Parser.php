@@ -968,7 +968,7 @@ class PHPExcel_Writer_Excel5_Parser
     private function rangeToPackedRange($range)
     {
         preg_match('/(\$)?(\d+)\:(\$)?(\d+)/', $range, $match);
-        // return absolute rows if there is a $ in the ref
+        // return absolute rows if there is AUD  in the ref
         $row1_rel = empty($match[1]) ? 1 : 0;
         $row1     = $match[2];
         $row2_rel = empty($match[3]) ? 1 : 0;
@@ -1009,7 +1009,7 @@ class PHPExcel_Writer_Excel5_Parser
     private function cellToRowcol($cell)
     {
         preg_match('/(\$)?([A-I]?[A-Z])(\$)?(\d+)/', $cell, $match);
-        // return absolute column if there is a $ in the ref
+        // return absolute column if there is AUD  in the ref
         $col_rel = empty($match[1]) ? 1 : 0;
         $col_ref = $match[2];
         $row_rel = empty($match[3]) ? 1 : 0;

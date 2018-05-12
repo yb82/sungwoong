@@ -102,7 +102,7 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
         <td>
            <?php echo help("쿠폰 타입을 변경하시면 입력 서식도 일부 변경됩니다."); ?>
            <select name="cp_type" id="cp_type">
-                <option value="0"<?php echo get_selected('0', $cp['cp_type']); ?>>정액할인(A $)</option>
+                <option value="0"<?php echo get_selected('0', $cp['cp_type']); ?>>정액할인(AUD )</option>
                 <option value="1"<?php echo get_selected('1', $cp['cp_type']); ?>>정률할인(%)</option>
            </select>
         </td>
@@ -110,7 +110,7 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
     <tr>
         <th scope="row"><label for="cp_price"><?php echo $cp['cp_type'] ? '할인비율' : '할인금액'; ?></label></th>
         <td>
-            <input type="text" name="cp_price" value="<?php echo stripslashes($cp['cp_price']); ?>" id="cp_price" required class="frm_input required"> <span id="cp_price_unit"><?php echo $cp['cp_type'] ? '%' : 'A $'; ?></span>
+            <input type="text" name="cp_price" value="<?php echo stripslashes($cp['cp_price']); ?>" id="cp_price" required class="frm_input required"> <span id="cp_price_unit"><?php echo $cp['cp_type'] ? '%' : 'AUD '; ?></span>
         </td>
     </tr>
     <tr id="tr_cp_trunc">
@@ -127,13 +127,13 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
     <tr>
         <th scope="row"><label for="cp_minimum">최소주문금액</label></th>
         <td>
-           A $ <input type="text" name="cp_minimum" value="<?php echo stripslashes($cp['cp_minimum']); ?>" id="cp_minimum" class="frm_input">
+           AUD  <input type="text" name="cp_minimum" value="<?php echo stripslashes($cp['cp_minimum']); ?>" id="cp_minimum" class="frm_input">
         </td>
     </tr>
     <tr id="tr_cp_maximum">
         <th scope="row"><label for="cp_maximum">최대할인금액</label></th>
         <td>
-            A $ <input type="text" name="cp_maximum" value="<?php echo stripslashes($cp['cp_maximum']); ?>" id="cp_maximum" class="frm_input"> 
+            AUD  <input type="text" name="cp_maximum" value="<?php echo stripslashes($cp['cp_maximum']); ?>" id="cp_maximum" class="frm_input"> 
         </td>
     </tr>
     <?php if($w == '') { ?>
@@ -229,7 +229,7 @@ function change_method(cp_method)
 function change_type(cp_type)
 {
     if(cp_type == "0") {
-        $("#cp_price_unit").text("A $");
+        $("#cp_price_unit").text("AUD ");
         $("#cp_price_unit").closest("tr").find("label").text("할인금액");
         $("#tr_cp_maximum").hide();
         $("#tr_cp_trunc").hide();

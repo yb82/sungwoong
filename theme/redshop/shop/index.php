@@ -134,17 +134,15 @@ $(function() {
     <section style="float: left; width: 50%;" id="sidx_lat">
  
     <?php echo latest('theme/shop_basic', 'notice', 5, 30); ?>
-    <!-- <?php echo latest('theme/shop_basic', 'free', 5, 25); ?>
-
-    <?php echo latest('theme/shop_basic', 'qa', 5, 20); ?> -->
+    
 </section>
 
     <section style="width: 50%;">
    
-    <?php echo latest('theme/shop_basic', 'notice', 5, 30); ?>
-   <!--  <?php echo latest('theme/shop_basic', 'free', 5, 25); ?>
+    
+  
 
-    <?php echo latest('theme/shop_basic', 'qa', 5, 20); ?> -->
+    <?php echo latest('theme/shop_basic', 'qa', 5, 20); ?>
 </section>
 </section>
     </div>

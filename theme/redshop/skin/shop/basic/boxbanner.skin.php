@@ -26,7 +26,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
         else if ($row['bn_url'] && $row['bn_url'] != 'http://') {
             $banner .= '<a href="'.G5_SHOP_URL.'/bannerhit.php?bn_id='.$row['bn_id'].'&amp;url='.urlencode($row['bn_url']).'"'.$bn_new_win.'>';
         }
-        echo $banner.'<span class="banner_img" style="background-image:url('.G5_DATA_URL.'/banner/'.$row['bn_id'].'); height:'.$size[1].'px;" '.$bn_border.'></span>';
+        echo $banner.'<span class="banner_img" style="background-repeat: repeat-y;  display:block; background-image:url('.G5_DATA_URL.'/banner/'.$row['bn_id'].'); height:'.$size[1].'px;" '.$bn_border.'></span>';
         if($banner)
             echo '</a>'.PHP_EOL;
         echo '</li>'.PHP_EOL;
@@ -39,7 +39,7 @@ if ($cnt > 1)
     echo '</ul><div class="custom-navigation flex-nv"><a href="#" class="flex-prev">이전</a><a href="#" class="flex-next">다음</a></div>'.PHP_EOL;
 
 if($cnt > 0)
-    echo '</ul><button type="button" id="sbn_side_close" class="close-btn">닫기</button></aside>';
+   // echo '</ul><button type="button" id="sbn_side_close" class="close-btn">닫기</button></aside>';
 ?>
 
 <script>

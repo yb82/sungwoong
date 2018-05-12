@@ -1008,9 +1008,9 @@ if(!isset($default['de_listtype_list_skin'])) {
             <td>
                 <label for="de_weit_g">기준무게</label>
                 <input type="text" name="de_weit_g" value="<?php echo $default['de_weit_g']; ?>" size="8" class="frm_input" id="de_weit_g"> g /
-                0 ~ 기준무게까지 A $
+                0 ~ 기준무게까지 AUD 
                 <input type="text" name="de_weit_cost" value="<?php echo $default['de_weit_cost']; ?>" size="8" class="frm_input" id="de_weit_cost">  /
-                이후 기준무게 당 A $
+                이후 기준무게 당 AUD 
                 <input type="text" name="de_weit_cost_add" value="<?php echo $default['de_weit_cost_add']; ?>" size="8" class="frm_input" id="de_weit_cost_add">  추가
             <td>
         </tr>

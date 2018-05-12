@@ -1842,7 +1842,7 @@ class HTMLPurifier_Config
 
     /**
      * Constructor
-     * @param HTMLPurifier_ConfigSchema $definition ConfigSchema that defines
+     * @param HTMLPurifier_ConfigSchemAUD definition ConfigSchema that defines
      * what directives are allowed.
      * @param HTMLPurifier_PropertyList $parent
      */
@@ -1860,7 +1860,7 @@ class HTMLPurifier_Config
      *                      object. Can be: a HTMLPurifier_Config() object,
      *                      an array of directives based on loadArray(),
      *                      or a string filename of an ini file.
-     * @param HTMLPurifier_ConfigSchema $schema Schema object
+     * @param HTMLPurifier_ConfigSchemAUD schema Schema object
      * @return HTMLPurifier_Config Configured object
      */
     public static function create($config, $schema = null)
@@ -2444,7 +2444,7 @@ class HTMLPurifier_Config
      * namespaces/directives list.
      *
      * @param array $allowed List of allowed namespaces/directives
-     * @param HTMLPurifier_ConfigSchema $schema Schema to use, if not global copy
+     * @param HTMLPurifier_ConfigSchemAUD schema Schema to use, if not global copy
      *
      * @return array
      */
@@ -2504,7 +2504,7 @@ class HTMLPurifier_Config
      * @param string|bool $index Index/name that the config variables are in
      * @param array|bool $allowed List of allowed namespaces/directives
      * @param bool $mq_fix Boolean whether or not to enable magic quotes fix
-     * @param HTMLPurifier_ConfigSchema $schema Schema to use, if not global copy
+     * @param HTMLPurifier_ConfigSchemAUD schema Schema to use, if not global copy
      *
      * @return mixed
      */
@@ -2537,7 +2537,7 @@ class HTMLPurifier_Config
      * @param string|bool $index Index/name that the config variables are in
      * @param array|bool $allowed List of allowed namespaces/directives
      * @param bool $mq_fix Boolean whether or not to enable magic quotes fix
-     * @param HTMLPurifier_ConfigSchema $schema Schema to use, if not global copy
+     * @param HTMLPurifier_ConfigSchemAUD schema Schema to use, if not global copy
      *
      * @return array
      */
@@ -2743,7 +2743,7 @@ class HTMLPurifier_ConfigSchema
 
     /**
      * Retrieves an instance of the application-wide configuration definition.
-     * @param HTMLPurifier_ConfigSchema $prototype
+     * @param HTMLPurifier_ConfigSchemAUD prototype
      * @return HTMLPurifier_ConfigSchema
      */
     public static function instance($prototype = null)
@@ -10132,7 +10132,7 @@ class HTMLPurifier_Zipper
 
     /**
      * Convert zipper back into a normal array, optionally filling in
-     * the hole with a value. (Usually you should supply a $t, unless you
+     * the hole with a value. (Usually you should supply AUD t, unless you
      * are at the end of the array.)
      */
     public function toArray($t = NULL) {

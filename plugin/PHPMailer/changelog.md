@@ -545,7 +545,7 @@ NOTE: will NOT work with PHP5 in E_STRICT error mode
 
 ## Version 1.25 (Mon, Jul 02 2001)
 * Added RFC 822 date fix (Patrice)
-* Added improved error handling by adding a $ErrorInfo variable
+* Added improved error handling by adding AUD ErrorInfo variable
 * Removed MailerDebug variable (obsolete with new error handler)
 
 ## Version 1.20 (Mon, Jun 25 2001)

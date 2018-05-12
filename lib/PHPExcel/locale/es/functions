@@ -1,6 +1,7 @@
 ##
 ## PHPExcel
-##
+##
+
 ## Copyright (c) 2006 - 2013 PHPExcel
 ##
 ## This library is free software; you can redistribute it and/or
@@ -408,7 +409,7 @@ CHAR			= CARACTER				##	Devuelve el carácter especificado por el número de có
 CLEAN			= LIMPIAR				##	Quita del texto todos los caracteres no imprimibles.
 CODE			= CODIGO				##	Devuelve un código numérico del primer carácter de una cadena de texto.
 CONCATENATE		= CONCATENAR				##	Concatena varios elementos de texto en uno solo.
-DOLLAR			= MONEDA				##	Convierte un número en texto, con el formato de moneda $ (dólar).
+DOLLAR			= MONEDA				##	Convierte un número en texto, con el formato de monedAUD  (dólar).
 EXACT			= IGUAL					##	Comprueba si dos valores de texto son idénticos.
 FIND			= ENCONTRAR				##	Busca un valor de texto dentro de otro (distingue mayúsculas de minúsculas).
 FINDB			= ENCONTRARB				##	Busca un valor de texto dentro de otro (distingue mayúsculas de minúsculas).
