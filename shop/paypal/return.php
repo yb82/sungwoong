@@ -65,7 +65,7 @@
 			* Checks whether the session has been compromised
 			*/
 			if($_SESSION["Payment_Amount"] != $totalAmt || $_SESSION["currencyCodeType"] != $currencyCode)
-			exit("Parameters in session do not match those in PayPal API calls");
+			exit("Parameters in session do not match those in PayPal API calls".$_SESSION["Payment_Amount"]." ".$totalAmt." ".$_SESSION["currencyCodeType"]." ".$currencyCode);
 		} 
 		else  
 		{

@@ -17,7 +17,7 @@ if($pp['pp_tno'])
 
 $hash_data = md5($_POST['pp_id'].$_POST['good_mny'].$pp['pp_time']);
 if($_POST['pp_id'] != get_session('ss_personalpay_id') || $hash_data != get_session('ss_personalpay_hash'))
-    die('개인결제 정보가 올바르지 않습니다.');
+    die('개인결제 정보가 올바르지 않습니다.'.$_POST['pp_id'] ." ".get_session('ss_personalpay_id') ." ". $hash_data." ". get_session('ss_personalpay_hash'));
 
 
 if ($pp_settle_case == "계좌이체")
@@ -105,11 +105,22 @@ else if ($pp_settle_case == "신용카드")
     $pp_bank_account    = $card_name;
     $pg_price           = $amount;
 }
-else if($pp_settle_case =="Paypal"){
-    if(isset($_POST['PAYMENTREQUEST_0_AMT'])){
-        
+else if($od_settle_case =="Paypal"){
+    if(isset($_POST["ack"])){
+        $ack = strtoupper($_POST['ack']);
+        if($ack == "SUCCESS"){
+            $pp_tno = $_POST["tid"];
+            //$od_receipt_point   = $i_temp_point;
+            $pp_receipt_price = $_POST["totalamt"];
+            $pp_receipt_time = G5_TIME_YMDHIS;
+            $pg_price =  $_POST["totalamt"];
+            $pp_bank_account ="paypal";
+               
+
+        }
     }
-    include G5_SHOP_PATH.'/paypal/return.php';
+    
+    
 }
 else
 {

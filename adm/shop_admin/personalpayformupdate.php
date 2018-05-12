@@ -24,9 +24,9 @@ if($w == 'd') {
         alert('이름을 입력해 주십시오.');
     if(!$_POST['pp_price'])
         alert('주문금액을 입력해 주십시오.');
-    if(preg_match('/[^0-9]/', $_POST['pp_price']))
+    /*if(preg_match('/[^0-9]/', $_POST['pp_price']))
         alert('주문금액은 숫자만 입력해 주십시오.');
-
+*/
     $od_id = preg_replace('/[^0-9]/', '', $_POST['od_id']);
 
     if($_POST['od_id']) {

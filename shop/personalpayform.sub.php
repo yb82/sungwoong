@@ -88,8 +88,14 @@ require_once(G5_SHOP_PATH.'/'.$default['de_pg_service'].'/orderform.1.php');
             echo '<input type="radio" id="pp_settle_card" name="pp_settle_case" value="신용카드" '.$checked.'> <label for="pp_settle_card">신용카드</label>'.PHP_EOL;
             $checked = '';
         }
+         if($is_paypal_use){
+             echo '<input type="radio" id="od_settle_bpay" name="od_settle_case" value="Paypal" checked> <label class="inicis_lpay">PAYPAL</label>'.PHP_EOL;
+            $checked = '';
+            $multi_settle++;
+        }
 
-        if ($default['de_vbank_use'] || $default['de_iche_use'] || $default['de_card_use'] || $default['de_hp_use']) {
+
+        if ($default['de_vbank_use'] || $default['de_iche_use'] || $default['de_card_use'] || $default['de_hp_use']||$is_paypal_use) {
         echo '</fieldset>';
 
         }
@@ -291,5 +297,80 @@ function forderform_check(f)
         f.submit();
     }
     <?php } ?>
+}
+</script>
+<script type="text/javascript">
+        window.onload = function(){
+      
+        
+          
+        var CREATE_PAYMENT_URL  = g5_url+"/shop/paypal.php";
+        var CANCEL_PAYMENT_URL = g5_url+"/shop/index.php";
+
+
+        var EXECUTE_PAYMENT_URL  = g5_url+'/shop/paypal.php';
+
+        var formchecker = false; 
+
+            paypal.Button.render({
+
+                env: 'sandbox',  // sandbox | production
+                locale: 'en_AU',
+                style: {
+                    size: 'small',   // tiny | small | medium
+                    color: 'gold',  // gold | blue | silver
+                    shape: 'pill',  // pill | rect
+                    label: 'checkout' // checkout | credit
+                },
+                
+
+                payment: function(resolve) {
+            // todo :form checker.
+                //if(forderform_check1(this.form)){
+                  formchecker = true;
+                  $('#paymentMethods').hide();
+                  $('#display_pay_process').show();
+                   var formdata = {PAYMENTREQUEST_0_AMT:  '<?php  echo number_format($tot_price,2,'.', ''); ?>' , paymentType:'SALE', PAYMENTREQUEST_0_CURRENCYCODE: 'AUD', currencyCodeType:'AUD', ADDROVERRIDE: 1};
+                    jQuery.post(CREATE_PAYMENT_URL,formdata,function(data) {
+
+                        resolve(data); // no
+
+                    });
+               // }else return false;
+             
+
+            
+
+        },
+        /* Optional: show a 'Pay Now' button in the checkout flow rather than Continue */
+        commit: true,
+        onAuthorize: function(data, actions) {
+            document.getElementById("payer").value = data.payerID;                   
+        jQuery.post(EXECUTE_PAYMENT_URL, { token: data.paymentToken, PayerID: data.payerID}, function(response) {
+            var aa = jQuery.parseJSON(response);
+
+            
+            document.getElementById("tid").value = aa.PAYMENTINFO_0_TRANSACTIONID;
+            document.getElementById("totalamt").value = aa.PAYMENTINFO_0_AMT;
+            document.getElementById("good_mny").value = aa.PAYMENTINFO_0_AMT;
+            document.getElementById("transaction_time").value = aa.PAYMENTINFO_0_ORDERTIME;
+            document.getElementById("ack").value = aa.ACK;
+            if(aa.ACK=="Success"){
+           
+                    document.getElementById("forderform").submit();
+          
+            }
+          
+          });
+          
+        },
+
+        onCancel: function(data, actions) {
+            return actions.redirect();
+        }
+
+    },  '#paymentMethods');
+
+       
 }
 </script>

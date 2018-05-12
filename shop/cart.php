@@ -147,7 +147,7 @@ include_once('./_head.php');
                 <?php echo $it_name.$mod_options; ?>
             </td>
             <td class="td_num"><?php echo number_format($sum['qty']); ?></td>
-            <td class="td_numbig">AUD<?php echo number_format($row['ct_price']); ?></td>
+            <td class="td_numbig">AUD<?php echo number_format($row['ct_price'],2); ?></td>
             <td class="td_numbig">AUD<span id="sell_price_<?php echo $i; ?>"><?php echo number_format($sell_price,2); ?></span></td>
             <td class="td_numbig"><?php echo number_format($point); ?></td>
             <td class="td_dvr"><?php echo $ct_send_cost; ?></td>

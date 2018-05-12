@@ -306,6 +306,79 @@ function get_max_value($arr)
     </div>
 </div>
 
+<?php /*********************************************************************************** sj2 start */?>
+<?php 
+$personalpay_rows = 5;
+
+$sql_common = " from {$g5['g5_shop_personalpay_table']} 
+               where pp_receipt_time <> '0000-00-00 00:00:00' and pp_receipt_time <> '' 
+                     and pp_receipt_time is not null ";
+$sql_order = " order by pp_receipt_time desc, pp_id desc ";
+
+$sql = " select count(*) as cnt $sql_common ";
+$row = sql_fetch($sql);
+$total_count = $row['cnt'];
+
+$colspan = 5;
+?>
+<section id="anc_sidx_settle">
+    <h2>개인결제 현황</h2>
+    <div id="sidx_settle" class="tbl_head02 tbl_wrap">
+    <div class="fleft pleft20"><em><a href="./personalpaylist.php">최근 입금된 개인결제 <?=$personalpay_rows?>건</a></em></div>
+    
+    <table class='verti'>
+    <thead>
+        <tr>
+            <th class="tleft nolne_left">제목</th>
+            <th class="tleft">주문번호</a></th>
+            <th class="tleft">주문금액</th>
+            <th class="tleft">입금금액</th>
+            <th class="tleft">미수금액</th>
+            <th class="tleft">입금방법</a></th>
+            <th class="tleft">입금일</a></a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        $sql = " select *
+                $sql_common
+                $sql_order
+                limit $personalpay_rows ";
+        $result = sql_query($sql);
+        $row=sql_fetch_array($result);
+        $counter = count($row);
+        if($counter !=0){
+        for ($i=0; $row=sql_fetch_array($result); $i++) {
+            if($row['od_id'])
+                $od_id = '<a href="./orderform.php?od_id='.$row['od_id'].' target="_blank">'.$row['od_id'].'</a>';
+            else
+                $od_id = '&nbsp;';
+    
+            $bg = 'bg'.($i%2);
+        ?>
+            <tr class='<?php echo $bg; ?>'>
+                <td><a href="./personalpayform.php?w=u&amp;pp_id=<?php echo $row['pp_id']; ?>&amp;<?php echo $qstr; ?>"><?php echo $row['pp_name']; ?></a></td>
+                <td class="td_odrnum3"><?php echo $od_id;  ?></td>
+                <td class="td_numsum"><?php echo number_format($row['pp_price'],2); ?></td>
+                <td class="td_numincome"><?php echo number_format($row['pp_receipt_price'],2); ?></td>
+                <td class="td_numrdy"><?php echo number_format(($row['pp_price'] - $row['pp_receipt_price']),2); ?></td>
+                <td class="td_payby"><?php echo $row['pp_settle_case']; ?></td>
+                <td class="td_date"><?php echo is_null_time($row['pp_receipt_time']) ? '' : substr($row['pp_receipt_time'], 2, 8); ?></td>
+            </tr>
+    
+        <?php
+        }
+        }
+        if($i == 0) echo "<tr><td colspan='$colspan' class='no_list'>자료가 없습니다.</td></tr>";
+
+        ?>
+    </tbody>
+    </table>
+    </div>
+</section>
+<?php /*********************************************************************************** sj2 end */?>
+
+
 <section id="anc_sidx_settle">
     <h2>결제수단별 주문현황</h2>
     <?php echo $pg_anchor; ?>

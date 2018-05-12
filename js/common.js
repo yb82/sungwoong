@@ -77,24 +77,24 @@ function number_format(data)
         data = data.replace(/^[\+\-]/, "");
     }
 
-    len = data.length;
-    mod = (len % cutlen);
-    k = cutlen - mod;
-    for (i=0; i<data.length; i++)
-    {
-        number = number + data.charAt(i);
+   // len = data.length;
+   // mod = (len % cutlen);
+   // k = cutlen - mod;
+    // for (i=0; i<data.length; i++)
+    // {
+    //     number = number + data.charAt(i);
 
-        if (i < data.length - 1)
-        {
-            k++;
-            if ((k % cutlen) == 0)
-            {
-                number = number + comma;
-                k = 0;
-            }
-        }
-    }
-
+    //     if (i < data.length - 1)
+    //     {
+    //         k++;
+    //         if ((k % cutlen) == 0)
+    //         {
+    //             number = number + comma;
+    //             k = 0;
+    //         }
+    //     }
+    // }
+    // removed due to paypal payment
     if(sign != null)
         number = sign+number;
 

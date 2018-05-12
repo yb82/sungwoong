@@ -104,7 +104,7 @@ if(!sql_query(" select pp_cash from {$g5['g5_shop_personalpay_table']} limit 1 "
             </tr>
             <tr>
                 <th scope="row"><label for="pp_price">주문금액</label></th>
-                <td><input type="text" name="pp_price" value="<?php echo $pp['pp_price']; ?>" id="pp_price" required class="required frm_input" size="15"> 원</td>
+                <td>AUD <input type="text" name="pp_price" value="<?php echo $pp['pp_price']; ?>" id="pp_price" required class="required frm_input" size="15"></td>
             </tr>
             <tr>
                 <th scope="row"><label for="od_id">주문번호</label></th>
@@ -150,7 +150,7 @@ if(!sql_query(" select pp_cash from {$g5['g5_shop_personalpay_table']} limit 1 "
             <?php if($popup != 'yes') { ?>
             <tr>
                 <th scope="row"><label for="pp_receipt_price">결제금액</label></th>
-                <td><input type="text" name="pp_receipt_price" value="<?php echo $pp['pp_receipt_price'] ? $pp['pp_receipt_price'] : ''; ?>" id="pp_receipt_price" class="frm_input" size="15"> 원</td>
+                <td>AUD <input type="text" name="pp_receipt_price" value="<?php echo $pp['pp_receipt_price'] ? $pp['pp_receipt_price'] : ''; ?>" id="pp_receipt_price" class="frm_input" size="15"></td>
             </tr>
             <tr>
                 <th scope="row"><label for="pp_settle_case">결제방법</label></th>
@@ -162,6 +162,7 @@ if(!sql_query(" select pp_cash from {$g5['g5_shop_personalpay_table']} limit 1 "
                         <option value="가상계좌" <?php echo get_selected($pp['pp_settle_case'], '가상계좌'); ?>>가상계좌</option>
                         <option value="신용카드" <?php echo get_selected($pp['pp_settle_case'], '신용카드'); ?>>신용카드</option>
                         <option value="휴대폰" <?php echo get_selected($pp['pp_settle_case'], '휴대폰'); ?>>휴대폰</option>
+                        <option value="휴대폰" <?php echo get_selected($pp['pp_settle_case'], 'paypal'); ?>>Paypal</option>
                     </select>
                 </td>
             </tr>
@@ -266,10 +267,10 @@ if(!sql_query(" select pp_cash from {$g5['g5_shop_personalpay_table']} limit 1 "
 <script>
 function form_check(f)
 {
-    if(f.pp_price.value.replace(/[0-9]/g, "").length > 0) {
+    /*if(f.pp_price.value.replace(/[0-9]/g, "").length > 0) {
         alert("주문금액은 숫자만 입력해 주십시오");
         return false;
-    }
+    }*/
 
     return true;
 }

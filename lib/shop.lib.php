@@ -590,7 +590,7 @@ function display_price($price, $tel_inq=false)
         $price = "";
     }
     else
-        $price = '&nbsp;&nbsp;+ $'.number_format($price, 2);
+        $price = '&nbsp;&nbsp;AUD '.number_format($price, 2);
 
     return $price;
 }
@@ -1000,9 +1000,9 @@ function get_item_options($it_id, $subject)
         $select .= '<option value="">선택</option>'.PHP_EOL;
         for($i=0; $row=sql_fetch_array($result); $i++) {
             if($row['io_price'] >= 0)
-                $price = '&nbsp;&nbsp;+ $'.number_format($row['io_price'],2);
+                $price = '&nbsp;&nbsp;AUD '.number_format($row['io_price'],2);
             else
-                $price = '&nbsp;&nbsp; $'.number_format($row['io_price'],2);
+                $price = '&nbsp;&nbsp;AUD '.number_format($row['io_price'],2);
 
             if($row['io_stock_qty'] < 1)
                 $soldout = '&nbsp;&nbsp;[품절]';
@@ -1049,9 +1049,9 @@ function get_item_supply($it_id, $subject)
 
         if(strlen($opt_id[1])) {
             if($row['io_price'] >= 0)
-                $price = '&nbsp;&nbsp;+ $'.number_format($row['io_price'],2);
+                $price = '&nbsp;&nbsp;AUD '.number_format($row['io_price'],2);
             else
-                $price = '&nbsp;&nbsp; $'.number_format($row['io_price'],2);
+                $price = '&nbsp;&nbsp;AUD '.number_format($row['io_price'],2);
             $io_stock_qty = get_option_stock_qty($it_id, $row['io_id'], $row['io_type']);
 
             if($io_stock_qty < 1)
