@@ -136,13 +136,16 @@ include_once(G5_THEME_PATH.'/head.sub.php');
         </script>
         <?php
         }
-        ?><iframe src="https://spot.wooribank.com/pot/Dream?withyou=FXCNT0006&rc=0&divType=3&lang=KOR&nat_code=AUD" frameBorder=0
-width=170 scrolling=no height=184 topmargin="0" name=irate marginWidth=0 marginHeight=0 title="무료환율표A형" style="position:absolute;top: 1px;left: 800px"></iframe>           
+        ?><!-- <iframe src="https://spot.wooribank.com/pot/Dream?withyou=FXCNT0006&rc=0&divType=3&lang=KOR" frameBorder=0
+width=170 scrolling=no height=184 topmargin="0" name=irate marginWidth=0 marginHeight=0 title="무료환율표A형" style="position:absolute;top: 1px;left: 800px"></iframe>         
             
-        <!-- <div id="hd_cart">
+       <div style="font-size:16px;font-family:sans-serif,Arial,Helvetica;width:248px; line-height:24px;border:1px solid #2D6AB4;background-color:#FFFFFF;"><div style="background-color:#2D6AB4;height:24px; font-weight:bold;text-align:left;padding-top:3px; width:100%;"><span style="background-image:url(http://ww.fxexchangerate.com/flag.png); background-position: 0 -2064px;float:left; margin:4px 0 0 20px; width:20px;height:15px; background-repeat:no-repeat;"></span><a rel="nofollow" style="color:#FFFFFF;padding-left:5px;text-decoration:none;" href="http://usd.fxexchangerate.com">United States Dollar</a></div><script type="text/javascript" src="http://w.fxexchangerate.com/converter.php?fm=KRW&ft=AUD,&lg=en&am=1000&ty=2"></script></div> --> <!-- <div id="hd_cart">
             <a href="<?php echo G5_SHOP_URL; ?>/mypage.php"><i class="fa fa-user" aria-hidden="true"></i><span class="sound_only">마이페이지</span></a>
             <a href="<?php echo G5_SHOP_URL; ?>/cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="sound_only">장바구니</span><span class="cart-count"><?php echo get_cart_count($tmp_cart_id); ?></span></a>
         </div> -->
+<!--copy begin here:-->
+<style type="text/css">#fx_convert_1 br {display:none;}</style><div style="width:160px;text-align:center;" id="fx_convert_1"><div id="xcolorc1_1" style="border:1px solid #000;background-color:#94abf0;padding: 0px 0px;margin: 0px 0px;align:center;overflow:hidden; position:absolute;top: 1px;left: 800px"><div id="xcolorc1_2" style="font-size:12px;color:#183a00;line-height:16px;font-family: arial; font-weight:bold;background:#94abf0;padding: 3px 1px;text-align:center;"><a href="http://kr.rateq.com/AUD" alt="AUD 호주 달러 환율 계산기" title="AUD 호주 달러 환율 계산기" id="forex2_linkc1" style="color:#000000;font-size:14px;text-decoration:none;line-height:16px;font-family: arial;" ><img src="http://kr.rateq.com/images/AUD.gif" border="0" style="margin:0;padding:0;border:0;" />호주 달러 환율 계산기</a></div><script src="http://kr.rateq.com/z.php?z=kr_AUDc1&c=94abf0&tz=Asia/Seoul&tf=11"></script></div><div style="text-align:center;"><a href="http://kr.rateq.com/" style="font-size:12px;">환율 계산기</a></div></div>
+<!--copy end here:-->
 
     </div>
     <div id="menu">
