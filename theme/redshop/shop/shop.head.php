@@ -94,6 +94,7 @@ include_once(G5_THEME_PATH.'/head.sub.php');
             }
             </script>
         </div>
+        
         <?php
         $save_file = G5_DATA_PATH.'/cache/theme/redshop/keyword.php';
         if(is_file($save_file))

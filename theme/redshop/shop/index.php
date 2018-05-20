@@ -131,20 +131,24 @@ $(function() {
 
 
 <section class="bosection">
-    <section style="float: left; width: 50%;" id="sidx_lat">
+    <section style="float: left; width: 30% ;margin-right: 20px" id="sidx_lat">
  
     <?php echo latest('theme/shop_basic', 'notice', 5, 30); ?>
     
 </section>
 
-    <section style="width: 50%;">
+    <section style="width: 30%;margin-right: 40px;">
    
     
   
 
     <?php echo latest('theme/shop_basic', 'qa', 5, 20); ?>
 </section>
+<section  style="width: 33%">
+    <div style="width:150px;height:auto;border:1px solid #2D6AB4;text-align:center;font-size:10px;font-family:sans-serif,Arial,Helvetica;border-top-right-radius:5px; border-top-left-radius:5px;background-color:#FFFFFF;"><div style="width:100%; height:24px;padding:5px 0px 0px 0px;background-color:#2D6AB4;font-weight:bold;"><a rel="nofollow" style="color:#FFFFFF;text-decoration:none;" href="http://www.fxexchangerate.com/">Currency Converter</a></div><script type="text/javascript" src="http://w.fxexchangerate.com/converter.php?fm=AUD&ft=KRW&lg=en&am=1&ty=1"></script></div> 
 </section>
+</section>
+
     </div>
 <?php
 include_once(G5_THEME_SHOP_PATH.'/shop.tail.php');
