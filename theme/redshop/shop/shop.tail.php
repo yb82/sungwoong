@@ -28,11 +28,11 @@ if (G5_IS_MOBILE) {
     </ul>
 
     <div class="ft-cs">
-        <h2>고객센터</h2><span class="st_bg_2"></span>
+        <!-- <h2>고객센터</h2><span class="st_bg_2"></span> -->
         <!--
         <strong><?php echo get_text($footerinfo['tel']); ?></strong>
         <p><?php echo get_text($footerinfo['etc'], 1); ?></p> -->
-        <img src = "<?php echo G5_URL; ?>/img/contact.gif">
+       <div id="logo"><a href="<?php echo G5_URL; ?>/"><img src="<?php echo G5_DATA_URL; ?>/common/logo_img" alt="<?php echo $config['cf_title']; ?>"></a></div>
     </div>
 
     <!-- <div class="ft-bank">

@@ -1787,9 +1787,9 @@ $(function(){
 
             
 
-        },
+             },
         /* Optional: show a 'Pay Now' button in the checkout flow rather than Continue */
-        commit: true,
+                 commit: true,
         onAuthorize: function(data, actions) {
             document.getElementById("payer").value = data.payerID;                   
         jQuery.post(EXECUTE_PAYMENT_URL, { token: data.paymentToken, PayerID: data.payerID}, function(response) {

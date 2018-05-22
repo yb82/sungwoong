@@ -4,7 +4,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 
 
-    <div id="paymentMethods" align="center"><br/>
+    <div id="paymentMethods" align="center" onclick="forderform_check(this.form);"><br/>
 
     <div id="display_pay_process" style="display:none">
     <img src="<?php echo G5_URL; ?>/shop/img/loading.gif" alt="">
