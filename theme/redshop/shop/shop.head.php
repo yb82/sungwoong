@@ -146,7 +146,7 @@ include_once(G5_THEME_PATH.'/head.sub.php');
                 <?php include_once(G5_THEME_SHOP_PATH.'/category.php'); // 분류 ?>
             </li>
             
-            <li><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=3">견적게시판</a></li>
+            <li><a href="<?php echo G5_BBS_URL.'/board.php?bo_table=order'; ?>">견적게시판</a></li>
             <!-- <li><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=4">인기상품</a></li>
             <li><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=1">히트상품</a></li>
             <li class="lt_sale"><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=5">할인상품</a></li> -->
