@@ -464,7 +464,7 @@ if($is_kakaopay_use) {
                 </td>
             </tr>
             <tr>
-                <th scope="row"><label for="od_memo">전하실말씀</label></th>
+                <th scope="row"><label for="od_memo" style="font: bold ;">통관번호<strong class="sound_only"> 필수</strong></label></th>
                 <td><textarea name="od_memo" id="od_memo"></textarea></td>
             </tr>
             </tbody>
@@ -1205,7 +1205,7 @@ function forderform_check1(f)
     check_field(f.od_addr1, "주소검색을 이용하여 주문하시는 분 주소를 입력하십시오.");
     //check_field(f.od_addr2, " 주문하시는 분의 상세주소를 입력하십시오.");
     check_field(f.od_zip, "");
-
+    check_field(f.od_memo,"통관부호를 입력하십시오.");
     clear_field(f.od_email);
     if(f.od_email.value=='' || f.od_email.value.search(/(\S+)@(\S+)\.(\S+)/) == -1)
         error_field(f.od_email, "E-mail을 바르게 입력해 주십시오.");
@@ -1340,8 +1340,10 @@ function forderform_check1(f)
             }
         }
     }
+    $("#od_button").hide();
+    $("#paymentMethods").show();
+   
 
-    return true;
     
 }
 
@@ -1771,8 +1773,7 @@ $(function(){
                 
 
                 payment: function(resolve) {
-            // todo :form checker.
-                //if(forderform_check1(this.form)){
+            
                   formchecker = true;
                   $('#paymentMethods').hide();
                   $('#display_pay_process').show();

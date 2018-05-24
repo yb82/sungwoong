@@ -2,9 +2,10 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 ?>
 
-
-
-    <div id="paymentMethods" align="center" onclick="forderform_check(this.form);"><br/>
+	<div align="center" id="od_button"><input type="button" value="주문하기" class="btn_submit" onclick="forderform_check1(this.form);" />
+    <a href="javascript:history.go(-1);" class="btn01">취소</a>
+</div>
+    <div id="paymentMethods" align="center" style="display:none"><br/>
 
     <div id="display_pay_process" style="display:none">
     <img src="<?php echo G5_URL; ?>/shop/img/loading.gif" alt="">

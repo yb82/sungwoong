@@ -57,7 +57,7 @@ function get_order_settle_sum($date)
 {
     global $g5, $default;
 
-    $case = array('신용카드', '계좌이체', '가상계좌', '무통장', '휴대폰');
+    $case = array('신용카드', '계좌이체', '가상계좌', '무통장', '휴대폰','Paypal');
     $info = array();
 
     // 결제수단별 합계
@@ -340,22 +340,27 @@ $colspan = 5;
     </thead>
     <tbody>
         <?php 
-        $sql = " select *
-                $sql_common
-                $sql_order
-                limit $personalpay_rows ";
+        $sql = " select * from g5_shop_personalpay
+               where pp_receipt_time <> '0000-00-00 00:00:00' and pp_receipt_time <> '' 
+                     and pp_receipt_time is not null
+                order by pp_receipt_time desc, pp_id desc 
+                limit 5";
         $result = sql_query($sql);
-        $row=sql_fetch_array($result);
-        $counter = count($row);
-        if($counter !=0){
+       // $row=sql_fetch_array($result);
+
+        
         for ($i=0; $row=sql_fetch_array($result); $i++) {
+           
             if($row['od_id'])
+               
                 $od_id = '<a href="./orderform.php?od_id='.$row['od_id'].' target="_blank">'.$row['od_id'].'</a>';
-            else
+                    
+            else{
                 $od_id = '&nbsp;';
+           
     
             $bg = 'bg'.($i%2);
-        ?>
+            ?>
             <tr class='<?php echo $bg; ?>'>
                 <td><a href="./personalpayform.php?w=u&amp;pp_id=<?php echo $row['pp_id']; ?>&amp;<?php echo $qstr; ?>"><?php echo $row['pp_name']; ?></a></td>
                 <td class="td_odrnum3"><?php echo $od_id;  ?></td>
@@ -367,8 +372,9 @@ $colspan = 5;
             </tr>
     
         <?php
+            }
         }
-        }
+        
         if($i == 0) echo "<tr><td colspan='$colspan' class='no_list'>자료가 없습니다.</td></tr>";
 
         ?>
@@ -413,7 +419,7 @@ $colspan = 5;
         </thead>
         <tbody>
         <?php
-        $case = array('신용카드', '계좌이체', '가상계좌', '무통장', '휴대폰', '포인트', '쿠폰');
+        $case = array('신용카드', '계좌이체', '가상계좌', '무통장', '휴대폰', '포인트', '쿠폰','Paypal');
 
         foreach($case as $val)
         {
@@ -426,7 +432,7 @@ $colspan = 5;
             {
             ?>
             <td><?php echo number_format($info[$date][$val]['count']); ?></td>
-            <td><?php echo number_format($info[$date][$val]['price']); ?></td>
+            <td><?php echo number_format($info[$date][$val]['price'],2); ?></td>
             <?php
             }
             ?>

@@ -119,9 +119,9 @@ $colspan = 10;
         </td>
         <td><?php echo $row['pp_name']; ?></td>
         <td class="td_odrnum3"><?php echo $od_id; ?></td>
-        <td class="td_numsum"><?php echo number_format($row['pp_price']); ?></td>
-        <td class="td_numincome"><?php echo number_format($row['pp_receipt_price']); ?></td>
-        <td class="td_numrdy"><?php echo number_format($row['pp_price'] - $row['pp_receipt_price']); ?></td>
+        <td class="td_numsum">AUD <?php echo number_format($row['pp_price'],2); ?></td>
+        <td class="td_numincome">AUD <?php echo number_format($row['pp_receipt_price'],2); ?></td>
+        <td class="td_numrdy">AUD <?php echo number_format(($row['pp_price'] - $row['pp_receipt_price']),2); ?></td>
         <td class="td_payby"><?php echo $row['pp_settle_case']; ?></td>
         <td class="td_date"><?php echo is_null_time($row['pp_receipt_time']) ? '' : substr($row['pp_receipt_time'], 2, 8); ?></td>
         <td class="td_boolean"><?php echo $row['pp_use'] ? '예' : '아니오'; ?></td>

@@ -105,7 +105,7 @@ else if ($pp_settle_case == "신용카드")
     $pp_bank_account    = $card_name;
     $pg_price           = $amount;
 }
-else if($od_settle_case =="Paypal"){
+else if($pp_settle_case =="Paypal"){
     if(isset($_POST["ack"])){
         $ack = strtoupper($_POST['ack']);
         if($ack == "SUCCESS"){

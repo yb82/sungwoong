@@ -247,7 +247,7 @@ if($od['od_pg'] == 'lg') {
             <?php } ?>
              <?php if ($od['od_weit_cost'] > 0) { ?>
             <dt class="sod_bsk_dvr">무게배송비</dt>
-            <dd class="sod_bsk_dvr"><strong><?php echo get_weit($od['od_weit']); ?> / <?php echo number_format($od['od_weit_cost']); ?>원</strong> </dd>
+            <dd class="sod_bsk_dvr"><strong><?php echo get_weit($od['od_weit']); ?> / AUD <?php echo number_format($od['od_weit_cost'],2); ?></strong> </dd>
             <?php } ?>
 
             <dt class="sod_bsk_cnt">총계</dt>
@@ -591,7 +591,7 @@ if($od['od_pg'] == 'lg') {
                 {
                 ?>
                 <tr>
-                    <th scope="row">전하실 말씀</th>
+                    <th scope="row">통관부호</th>
                     <td><?php echo conv_content($od['od_memo'], 0); ?></td>
                 </tr>
                 <?php } ?>

@@ -56,7 +56,7 @@ require_once(G5_SHOP_PATH.'/'.$default['de_pg_service'].'/orderform.1.php');
             $escrow_title = "에스크로 ";
         }
 
-        if ($default['de_vbank_use'] || $default['de_iche_use'] || $default['de_card_use'] || $default['de_hp_use']) {
+        if ($default['de_vbank_use'] || $default['de_iche_use'] || $default['de_card_use'] || $default['de_hp_use'] ||$default["de_paypal_client_api_id"]) {
             echo '<fieldset id="sod_frm_paysel">';
             echo '<legend>결제방법 선택</legend>';
         }
@@ -89,7 +89,7 @@ require_once(G5_SHOP_PATH.'/'.$default['de_pg_service'].'/orderform.1.php');
             $checked = '';
         }
          if($is_paypal_use){
-             echo '<input type="radio" id="od_settle_bpay" name="od_settle_case" value="Paypal" checked> <label class="inicis_lpay">PAYPAL</label>'.PHP_EOL;
+             echo '<input type="radio" id="od_settle_bpay" name="pp_settle_case" value="Paypal" checked> <label class="inicis_lpay">PAYPAL</label>'.PHP_EOL;
             $checked = '';
             $multi_settle++;
         }
@@ -120,6 +120,13 @@ if ($default['de_escrow_use']) {
 ?>
 
 <script>
+function forderform_check1()
+{
+    $("#od_button").hide();
+    $("#paymentMethods").show();
+   
+
+}
 function forderform_check(f)
 {
     var settle_case = document.getElementsByName("pp_settle_case");
