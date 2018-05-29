@@ -1,0 +1,38 @@
+[29-May-2018 00:08:08 UTC] PHP Warning:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' (this will throw an Error in a future version of PHP) in /home/goodausc/public_html/yc4/install/install_config.php on line 56
+[29-May-2018 00:08:08 UTC] PHP Warning:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' (this will throw an Error in a future version of PHP) in /home/goodausc/public_html/yc4/install/install_config.php on line 105
+[29-May-2018 00:08:39 UTC] PHP Warning:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' (this will throw an Error in a future version of PHP) in /home/goodausc/public_html/yc4/install/install_config.php on line 57
+[29-May-2018 00:08:39 UTC] PHP Warning:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' (this will throw an Error in a future version of PHP) in /home/goodausc/public_html/yc4/install/install_config.php on line 106
+[29-May-2018 00:08:52 UTC] PHP Warning:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' (this will throw an Error in a future version of PHP) in /home/goodausc/public_html/yc4/install/install_config.php on line 57
+[29-May-2018 00:08:52 UTC] PHP Warning:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' (this will throw an Error in a future version of PHP) in /home/goodausc/public_html/yc4/install/install_config.php on line 106
+[29-May-2018 00:09:00 UTC] PHP Warning:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' (this will throw an Error in a future version of PHP) in /home/goodausc/public_html/yc4/install/install_config.php on line 63
+[29-May-2018 00:09:00 UTC] PHP Warning:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' (this will throw an Error in a future version of PHP) in /home/goodausc/public_html/yc4/install/install_config.php on line 112
+[29-May-2018 00:09:01 UTC] PHP Warning:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' (this will throw an Error in a future version of PHP) in /home/goodausc/public_html/yc4/install/install_config.php on line 63
+[29-May-2018 00:09:01 UTC] PHP Warning:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' (this will throw an Error in a future version of PHP) in /home/goodausc/public_html/yc4/install/install_config.php on line 112
+[29-May-2018 00:57:38 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/goodausc/public_html/yc4/install/install_config.php on line 4
+[29-May-2018 00:57:40 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/goodausc/public_html/yc4/install/install_config.php on line 4
+[29-May-2018 01:36:46 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 57
+[29-May-2018 01:36:46 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 106
+[29-May-2018 01:39:11 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 57
+[29-May-2018 01:39:11 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 106
+[29-May-2018 01:39:21 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 57
+[29-May-2018 01:39:21 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 106
+[29-May-2018 02:20:10 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 57
+[29-May-2018 02:20:10 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 106
+[29-May-2018 02:20:19 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 57
+[29-May-2018 02:20:19 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 106
+[29-May-2018 11:40:14 Asia/Seoul] PHP Warning:  file(../LICENSE.txt): failed to open stream: No such file or directory in /home/goodausc/public_html/yc4/install/index.php on line 24
+[29-May-2018 11:40:14 Asia/Seoul] PHP Warning:  implode(): Invalid arguments passed in /home/goodausc/public_html/yc4/install/index.php on line 24
+[29-May-2018 02:40:16 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 57
+[29-May-2018 02:40:16 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 106
+[29-May-2018 11:42:45 Asia/Seoul] PHP Fatal error:  Call to undefined function locale_get_default() in /home/goodausc/public_html/yc4/install/index.php on line 12
+[29-May-2018 11:42:58 Asia/Seoul] PHP Fatal error:  Call to undefined function locale_get_default() in /home/goodausc/public_html/yc4/install/index.php on line 12
+[29-May-2018 11:43:19 Asia/Seoul] PHP Warning:  file(../LICENSE.txt): failed to open stream: No such file or directory in /home/goodausc/public_html/yc4/install/index.php on line 24
+[29-May-2018 11:43:19 Asia/Seoul] PHP Warning:  implode(): Invalid arguments passed in /home/goodausc/public_html/yc4/install/index.php on line 24
+[29-May-2018 11:45:00 Asia/Seoul] PHP Warning:  file(../LICENSE.txt): failed to open stream: No such file or directory in /home/goodausc/public_html/yc4/install/index.php on line 25
+[29-May-2018 11:45:00 Asia/Seoul] PHP Warning:  implode(): Invalid arguments passed in /home/goodausc/public_html/yc4/install/index.php on line 25
+[29-May-2018 02:53:22 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 57
+[29-May-2018 02:53:22 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 106
+[29-May-2018 22:03:08 Asia/Seoul] PHP Notice:  Undefined variable: title in /home/goodausc/public_html/yc4/install/install.inc.php on line 6
+[29-May-2018 13:03:31 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 57
+[29-May-2018 13:03:31 UTC] PHP Notice:  Use of undefined constant G5_VERSION - assumed 'G5_VERSION' in /home/goodausc/public_html/yc4/install/install_config.php on line 106
+[29-May-2018 22:05:39 Asia/Seoul] PHP Notice:  Undefined variable: title in /home/goodausc/public_html/install/install.inc.php on line 6

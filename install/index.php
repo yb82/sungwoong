@@ -2,13 +2,14 @@
 @header('Content-Type: text/html; charset=utf-8');
 @header('X-Robots-Tag: noindex');
 include_once ('../config.php');
-$title = G5_VERSION." 라이센스 확인 1/3";
+
 include_once ('./install.inc.php');
 ?>
 
 <?php
 if ($exists_data_dir && $write_data_dir) {
     // 필수 모듈 체크
+    echo $title = G5_VERSION." 라이센스 확인 1/3";
     require_once('./library.check.php');
 ?>
 <form action="./install_config.php" method="post" onsubmit="return frm_submit(this);">

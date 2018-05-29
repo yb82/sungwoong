@@ -428,6 +428,7 @@ $colspan = 5;
         <tr>
             <th scope="row" id="th_val_<?php echo $val_cnt; ?>" class="td_category"><?php echo $val; ?></th>
             <?php
+            
             foreach($info_key as $date)
             {
             ?>

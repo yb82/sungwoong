@@ -276,7 +276,22 @@ function get_filesize($size)
     return $size;
 }
 
+function is_use_email_certify(){
+    global $config;
+    if( $config['cf_use_email_certify'] && function_exists('social_is_login_check') ){
+        if( $config['cf_social_login_use'] && (get_session('ss_social_provider') || social_is_login_check()) ){      //소셜 로그인을 사용한다면
+            $tmp = (defined('G5_SOCIAL_CERTIFY_MAIL') && G5_SOCIAL_CERTIFY_MAIL) ? 1 : 0;
+            return $tmp;
+        }
+    }
+    return $config['cf_use_email_certify'];
+}
 
+function get_real_client_ip(){
+    if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    return $_SERVER['REMOTE_ADDR'];
+}
 // 게시글에 첨부된 파일을 얻는다. (배열로 반환)
 function get_file($bo_table, $wr_id)
 {
